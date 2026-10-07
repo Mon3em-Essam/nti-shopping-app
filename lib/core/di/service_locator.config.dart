@@ -10,10 +10,13 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 
+import 'package:bloc/bloc.dart' as _i923;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
-import 'package:nti_shopping_app/feature/products_by_category/data/api/products_by_category_api.dart'
-    as _i994;
+import 'package:nti_shopping_app/feature/products_by_category/data/api/products_by_category_api_imp.dart'
+    as _i60;
+import 'package:nti_shopping_app/feature/products_by_category/data/api/products_by_category_api_interface.dart'
+    as _i558;
 import 'package:nti_shopping_app/feature/products_by_category/data/repo/products_by_category_data_source_imp.dart'
     as _i465;
 import 'package:nti_shopping_app/feature/products_by_category/data/repo/products_by_category_repo_imp.dart'
@@ -22,8 +25,10 @@ import 'package:nti_shopping_app/feature/products_by_category/domain/repo/produc
     as _i949;
 import 'package:nti_shopping_app/feature/products_by_category/domain/repo/products_by_category_repo_interface.dart'
     as _i994;
-import 'package:nti_shopping_app/feature/products_by_category/domain/usecase/get_products_by_category_usecase.dart'
-    as _i93;
+import 'package:nti_shopping_app/feature/products_by_category/domain/usecase/products_by_category_get_usecase.dart'
+    as _i394;
+import 'package:nti_shopping_app/feature/products_by_category/presentation/view_model/cubit/products_by_category_cubit.dart'
+    as _i873;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -32,12 +37,15 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
-    gh.factory<_i994.ProductsByCategoryApiInterface>(
-      () => _i994.ProductsByCategoryApiImp(),
+    gh.factory<_i558.ProductsByCategoryApiInterface>(
+      () => _i60.ProductsByCategoryApiImp(),
+    );
+    gh.factory<_i923.Cubit<_i873.ProductsByCategoryState>>(
+      () => _i873.ProductsByCategoryCubit(),
     );
     gh.factory<_i949.ProductsByCategoryDataSourceInterface>(
       () => _i465.ProductsByCategoryDataSourceImp(
-        api: gh<_i994.ProductsByCategoryApiInterface>(),
+        api: gh<_i558.ProductsByCategoryApiInterface>(),
       ),
     );
     gh.factory<_i994.ProductsByCategoryRepoInterface>(
@@ -45,8 +53,8 @@ extension GetItInjectableX on _i174.GetIt {
         dataSource: gh<_i949.ProductsByCategoryDataSourceInterface>(),
       ),
     );
-    gh.factory<_i93.GetProductsByCategoryUsecase>(
-      () => _i93.GetProductsByCategoryUsecase(
+    gh.factory<_i394.ProductsByCategoryGetUsecase>(
+      () => _i394.ProductsByCategoryGetUsecase(
         categoryProductsRepo: gh<_i994.ProductsByCategoryRepoInterface>(),
       ),
     );

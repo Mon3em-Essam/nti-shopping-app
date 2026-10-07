@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ProductsByCategoryScreen extends StatelessWidget {
-  const ProductsByCategoryScreen({super.key});
+  const ProductsByCategoryScreen({required this.category, super.key});
+  final String category;
 
   @override
   Widget build(BuildContext context) {

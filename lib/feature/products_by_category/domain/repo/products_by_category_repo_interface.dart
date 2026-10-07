@@ -1,7 +1,8 @@
+import 'package:nti_shopping_app/core/network/result_api.dart';
 import 'package:nti_shopping_app/feature/products_by_category/domain/entities/product_by_category_entity.dart';
 
 abstract interface class ProductsByCategoryRepoInterface {
-  Future<List<ProductByCategoryEntity>>getProductsByCategory(
+  Future<ResultApi<List<ProductByCategoryEntity>>>getProductsByCategory(
     String category,
     int skip,
     int limit,
