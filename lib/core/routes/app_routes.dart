@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nti_shopping_app/core/di/service_locator.dart';
+import 'package:nti_shopping_app/feature/Onboarding/presentation/view/screens/onboarding_screen.dart';
+import 'package:nti_shopping_app/feature/auth/presentation/screens/view/login.dart';
 
 abstract class AppRoutes {
   static const String login = '/login';
@@ -13,11 +13,13 @@ abstract class AppRoutes {
   static const String search = '/search';
 
   static Map<String, WidgetBuilder> routes = {
-    // onBoarding: (context) => OnboardingScreen(),
+    onBoarding: (context) => OnboardingScreen(),
     // login: (context) => BlocProvider(
     //   create: (context) => serviceLocator<LoginCubit>(),
-    //   child: LogIn(),
+    //   child: Login(),
     // ),
+    login: (context) => Login(),
+
     // hello: (context) => HelloScreen(),
     // register: (context) => BlocProvider<RegisterCubit>(
     //   create: (context) => serviceLocator<RegisterCubit>(),

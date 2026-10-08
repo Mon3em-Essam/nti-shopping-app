@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 
 class AppTheme {
@@ -59,53 +58,50 @@ class AppTheme {
           ),
         ),
       ),
-      textTheme: TextTheme(
-      titleMedium: GoogleFonts.inter(
-        color: AppColors.white,
-          fontSize: 18,
-        fontWeight: FontWeight.w600,
-      ),
 
-      bodyLarge: GoogleFonts.inter(
-        color: AppColors.primaryColorBlack,
+      textTheme: const TextTheme(
+        titleMedium: TextStyle(
+          color: AppColors.white,
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+        ),
+        bodyLarge: TextStyle(
+          color: AppColors.primaryColorBlack,
           fontSize: 22,
-        fontWeight: FontWeight.w600,
-      ),
-
-      bodyMedium: GoogleFonts.inter(
+          fontWeight: FontWeight.w600,
+        ),
+        bodyMedium: TextStyle(
           fontSize: 18,
-        color: AppColors.primaryColorBlack,
-        fontWeight: FontWeight.w400,
-      ),
-
-      labelMedium: GoogleFonts.inter(
+          color: AppColors.primaryColorBlack,
+          fontWeight: FontWeight.w400,
+        ),
+        labelMedium: TextStyle(
           fontSize: 14,
-        color: AppColors.primaryColorBlack,
-        fontWeight: FontWeight.w400,
-      ),
-
-        labelLarge: GoogleFonts.inter(
+          color: AppColors.primaryColorBlack,
+          fontWeight: FontWeight.w400,
+        ),
+        labelLarge: TextStyle(
           fontSize: 20,
           color: AppColors.primaryColorBlack,
           fontWeight: FontWeight.w500,
         ),
       ),
 
-bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         elevation: 40,
         type: BottomNavigationBarType.fixed,
         backgroundColor: AppColors.backgroundColor,
         selectedItemColor: AppColors.orangeLight,
         unselectedItemColor: AppColors.defaultHintTextColor,
-        selectedLabelStyle: GoogleFonts.inter(
+        selectedLabelStyle: TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w600,
         ),
-        unselectedLabelStyle: GoogleFonts.inter(
+        unselectedLabelStyle: TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w500,
         ),
-        selectedIconTheme: const IconThemeData(size: 24),
+        selectedIconTheme: IconThemeData(size: 24),
       ),
 
       elevatedButtonTheme: ElevatedButtonThemeData(
@@ -113,7 +109,7 @@ bottomNavigationBarTheme: BottomNavigationBarThemeData(
           backgroundColor: AppColors.primaryColor,
           minimumSize: const Size(double.infinity, 48),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          textStyle: GoogleFonts.inter(
+          textStyle: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w600,
             color: AppColors.white,
@@ -123,3 +119,4 @@ bottomNavigationBarTheme: BottomNavigationBarThemeData(
     );
   }
 }
+
