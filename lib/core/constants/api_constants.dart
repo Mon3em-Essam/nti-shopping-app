@@ -1,3 +1,4 @@
 abstract class ApiConstants {
-  static String baseUrl = "`https://supermarket-dan1.onrender.com/api/v1";
+  static String baseUrl = "https://supermarket-dan1.onrender.com/api/v1";
+  static String productByCategoryEndPoint = "/home/products/category";
 }
