@@ -1,8 +1,8 @@
 import 'package:nti_shopping_app/core/network/result_api.dart';
-import 'package:nti_shopping_app/features/home/data/model/category_dto.dart';
-import 'package:nti_shopping_app/features/home/domain/entities/category_entity.dart';
-import 'package:nti_shopping_app/features/home/domain/repo/home_data_source_interface.dart';
-import 'package:nti_shopping_app/features/home/domain/repo/home_repo_interface.dart';
+import 'package:nti_shopping_app/feature/home/data/model/category_dto.dart';
+import 'package:nti_shopping_app/feature/home/domain/entities/category_entity.dart';
+import 'package:nti_shopping_app/feature/home/domain/repo/home_data_source_interface.dart';
+import 'package:nti_shopping_app/feature/home/domain/repo/home_repo_interface.dart';
 
 class HomeRepoImp implements HomeRepoInterface {
   final HomeDataSourceInterface dataSource;

@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:nti_shopping_app/core/network/result_api.dart';
-import 'package:nti_shopping_app/features/home/data/model/category_dto.dart';
-import 'package:nti_shopping_app/features/home/domain/repo/home_data_source_interface.dart';
+import 'package:nti_shopping_app/feature/home/data/model/category_dto.dart';
+import 'package:nti_shopping_app/feature/home/domain/repo/home_data_source_interface.dart';
 
 
 class HomeDataSourceImp implements HomeDataSourceInterface {
