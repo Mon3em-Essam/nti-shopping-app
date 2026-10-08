@@ -68,7 +68,7 @@ class AppTheme {
 
       bodyLarge: GoogleFonts.inter(
         color: AppColors.primaryColorBlack,
-          fontSize: 22,
+          fontSize: 32,
         fontWeight: FontWeight.w600,
       ),
 
