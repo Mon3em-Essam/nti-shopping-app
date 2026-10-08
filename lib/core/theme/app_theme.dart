@@ -91,6 +91,23 @@ class AppTheme {
         ),
       ),
 
+bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        elevation: 40,
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: AppColors.backgroundColor,
+        selectedItemColor: AppColors.orangeLight,
+        unselectedItemColor: AppColors.defaultHintTextColor,
+        selectedLabelStyle: GoogleFonts.inter(
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+        ),
+        unselectedLabelStyle: GoogleFonts.inter(
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+        ),
+        selectedIconTheme: const IconThemeData(size: 24),
+      ),
+
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primaryColor,
