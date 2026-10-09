@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:nti_shopping_app/feature/Onboarding/presentation/view/screens/onboarding_screen.dart';
+import 'package:nti_shopping_app/feature/auth/presentation/screens/view/hello_screen.dart';
 import 'package:nti_shopping_app/feature/auth/presentation/screens/view/login.dart';
+import 'package:nti_shopping_app/feature/auth/presentation/screens/view/sign_up.dart';
+import 'package:nti_shopping_app/feature/home/presentation/view/screens/home_screen.dart';
 
 abstract class AppRoutes {
   static const String login = '/login';
@@ -19,8 +22,9 @@ abstract class AppRoutes {
     //   child: Login(),
     // ),
     login: (context) => Login(),
-
-    // hello: (context) => HelloScreen(),
+    register: (context) => SignUp(),
+    hello: (context) => HelloScreen(),
+    home: (context) => HomeScreen(),
     // register: (context) => BlocProvider<RegisterCubit>(
     //   create: (context) => serviceLocator<RegisterCubit>(),
     //   child: Register(),

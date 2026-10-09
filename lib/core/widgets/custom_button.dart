@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nti_shopping_app/core/theme/app_colors.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
@@ -17,7 +18,7 @@ class CustomButton extends StatelessWidget {
     return Ink(
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xffFF9900), Color(0xffFFB700)],
+          colors: [AppColors.primaryColor, AppColors.orangeLight],
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
         ),
