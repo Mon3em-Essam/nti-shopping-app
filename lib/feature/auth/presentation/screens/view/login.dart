@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:nti_shopping_app/core/routes/app_routes.dart';
 import 'package:nti_shopping_app/core/widgets/custom_button.dart';
 import 'package:nti_shopping_app/core/widgets/custom_text_form_feild.dart';
 
@@ -17,11 +18,11 @@ class _SignUpState extends State<Login> {
       backgroundColor: Color(0xffEBEBEB),
       appBar: AppBar(
         backgroundColor: Color(0xffEBEBEB),
-        title: Center(child: Text("Sign up")),
+        title: Center(child: Text("login")),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -37,24 +38,35 @@ class _SignUpState extends State<Login> {
                 obscureText: true,
               ),
               SizedBox(height: 71),
-              CustomButton(text: "Sign up", onTap: () {}),
-              SizedBox(height: 400),
+              CustomButton(
+                text: "Login",
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, AppRoutes.home);
+                },
+              ),
+              Spacer(),
               Center(
                 child: Text.rich(
                   TextSpan(
-                    text: "Already have an account? ",
+                    text: "Don’t have an account?  ",
                     style: const TextStyle(
                       fontSize: 15,
                       color: Color(0xff212121),
                     ),
                     children: [
                       TextSpan(
-                        text: "Login",
+                        text: "sign up",
                         style: const TextStyle(
                           color: Color(0xff212121),
                           fontWeight: FontWeight.bold,
                         ),
-                        recognizer: TapGestureRecognizer()..onTap = () {},
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.pushReplacementNamed(
+                              context,
+                              AppRoutes.register,
+                            );
+                          },
                       ),
                     ],
                   ),

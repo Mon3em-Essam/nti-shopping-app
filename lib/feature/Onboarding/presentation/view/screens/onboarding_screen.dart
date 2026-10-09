@@ -21,7 +21,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('isFirstTime', false);
     if (mounted) {
-      Navigator.of(context).pushNamed(AppRoutes.login);
+      Navigator.of(context).pushNamed(AppRoutes.hello);
     }
   }
 
@@ -124,8 +124,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       Text(
                         onboardingList[index].title,
                         style: const TextStyle(
-                          fontSize:
-                              22,
+                          fontSize: 22,
                           fontWeight: FontWeight.bold,
                           color: AppColors.primaryColorBlack,
                         ),
@@ -134,12 +133,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       Text(
                         onboardingList[index].description,
                         style: const TextStyle(
-                          fontSize: 18, 
+                          fontSize: 18,
                           fontWeight: FontWeight.w400,
                           color: AppColors.defaultHintTextColor,
                         ),
                         textAlign: TextAlign.center,
-                      )
+                      ),
                     ],
                   ),
                 ),
