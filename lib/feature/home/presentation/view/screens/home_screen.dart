@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nti_shopping_app/core/widgets/product_item_card.dart';
+import 'package:nti_shopping_app/feature/home/presentation/view/widget/category_item.dart';
 import 'package:nti_shopping_app/feature/home/presentation/view/widget/home_header.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,9 +18,11 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Padding(
           padding: const EdgeInsets.all(11.0),
           child: Column(
+            spacing: 15,
             crossAxisAlignment: .start,
             children: [
               HomeHeader(),
+              CategoriesWidget(),
               Expanded(
                 child: GridView.builder(
                   itemCount: 10,

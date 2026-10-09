@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nti_shopping_app/core/theme/app_theme.dart';
 import 'package:nti_shopping_app/feature/auth/presentation/screens/view/hello_screen.dart';
-import 'package:nti_shopping_app/feature/auth/presentation/screens/view/login.dart';
+import 'package:nti_shopping_app/feature/auth/presentation/screens/view/login_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/routes/app_routes.dart';
