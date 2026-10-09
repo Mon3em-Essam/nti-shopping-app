@@ -1,5 +1,5 @@
 import 'package:nti_shopping_app/core/constants/app_constants.dart';
-import 'package:nti_shopping_app/features/home/domain/entities/product_response_entity.dart';
+import 'package:nti_shopping_app/feature/home/domain/entities/product_response_entity.dart';
 
 class ProductResponseDto {
   List<ProductItemDto>? list;

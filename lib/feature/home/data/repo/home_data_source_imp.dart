@@ -1,11 +1,11 @@
 import 'package:injectable/injectable.dart';
 import 'package:nti_shopping_app/core/network/result_api.dart';
-import 'package:nti_shopping_app/features/home/data/api/home_api_interface.dart';
-import 'package:nti_shopping_app/features/home/data/model/category_item_dto.dart';
-import 'package:nti_shopping_app/features/home/data/model/product_response_dto.dart';
-import 'package:nti_shopping_app/features/home/domain/entities/category_item_entity.dart';
-import 'package:nti_shopping_app/features/home/domain/entities/product_response_entity.dart';
-import 'package:nti_shopping_app/features/home/domain/repo/home_data_source_interface.dart';
+import 'package:nti_shopping_app/feature/home/data/api/home_api_interface.dart';
+import 'package:nti_shopping_app/feature/home/data/model/category_item_dto.dart';
+import 'package:nti_shopping_app/feature/home/data/model/product_response_dto.dart';
+import 'package:nti_shopping_app/feature/home/domain/entities/category_item_entity.dart';
+import 'package:nti_shopping_app/feature/home/domain/entities/product_response_entity.dart';
+import 'package:nti_shopping_app/feature/home/domain/repo/home_data_source_interface.dart';
 
 @Injectable(as: HomeDataSourceInterface)
 class HomeDataSourceImp implements HomeDataSourceInterface {

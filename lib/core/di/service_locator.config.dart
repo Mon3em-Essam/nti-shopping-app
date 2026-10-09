@@ -18,23 +18,23 @@ import 'package:nti_shopping_app/core/storage_helper/app_secure_storage.dart'
     as _i835;
 import 'package:nti_shopping_app/core/storage_helper/startup_helper.dart'
     as _i383;
-import 'package:nti_shopping_app/features/home/data/api/home_api_imp.dart'
+import 'package:nti_shopping_app/feature/home/data/api/home_api_imp.dart'
     as _i154;
-import 'package:nti_shopping_app/features/home/data/api/home_api_interface.dart'
+import 'package:nti_shopping_app/feature/home/data/api/home_api_interface.dart'
     as _i283;
-import 'package:nti_shopping_app/features/home/data/repo/home_data_source_imp.dart'
+import 'package:nti_shopping_app/feature/home/data/repo/home_data_source_imp.dart'
     as _i377;
-import 'package:nti_shopping_app/features/home/data/repo/home_repo_imp.dart'
+import 'package:nti_shopping_app/feature/home/data/repo/home_repo_imp.dart'
     as _i783;
-import 'package:nti_shopping_app/features/home/domain/repo/home_data_source_interface.dart'
+import 'package:nti_shopping_app/feature/home/domain/repo/home_data_source_interface.dart'
     as _i819;
-import 'package:nti_shopping_app/features/home/domain/repo/home_repo_interface.dart'
+import 'package:nti_shopping_app/feature/home/domain/repo/home_repo_interface.dart'
     as _i199;
-import 'package:nti_shopping_app/features/home/domain/use_case/get_all_categories_use_case.dart'
+import 'package:nti_shopping_app/feature/home/domain/use_case/get_all_categories_use_case.dart'
     as _i425;
-import 'package:nti_shopping_app/features/home/domain/use_case/get_all_products_use_case.dart'
+import 'package:nti_shopping_app/feature/home/domain/use_case/get_all_products_use_case.dart'
     as _i413;
-import 'package:nti_shopping_app/features/home/presentation/view_model/home_cubit.dart'
+import 'package:nti_shopping_app/feature/home/presentation/view_model/home_cubit.dart'
     as _i348;
 
 extension GetItInjectableX on _i174.GetIt {

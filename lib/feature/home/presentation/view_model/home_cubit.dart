@@ -2,10 +2,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import 'package:nti_shopping_app/core/network/result_api.dart';
-import 'package:nti_shopping_app/features/home/domain/entities/category_item_entity.dart';
-import 'package:nti_shopping_app/features/home/domain/entities/product_response_entity.dart';
-import 'package:nti_shopping_app/features/home/domain/use_case/get_all_categories_use_case.dart';
-import 'package:nti_shopping_app/features/home/domain/use_case/get_all_products_use_case.dart';
+import 'package:nti_shopping_app/feature/home/domain/entities/category_item_entity.dart';
+import 'package:nti_shopping_app/feature/home/domain/entities/product_response_entity.dart';
+import 'package:nti_shopping_app/feature/home/domain/use_case/get_all_categories_use_case.dart';
+import 'package:nti_shopping_app/feature/home/domain/use_case/get_all_products_use_case.dart';
 
 part 'home_state.dart';
 part 'home_intent.dart';

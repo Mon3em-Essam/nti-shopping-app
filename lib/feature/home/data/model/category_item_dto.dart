@@ -1,4 +1,4 @@
-import 'package:nti_shopping_app/features/home/domain/entities/category_item_entity.dart';
+import 'package:nti_shopping_app/feature/home/domain/entities/category_item_entity.dart';
 
 class CategoryItemDto {
   String? slug;

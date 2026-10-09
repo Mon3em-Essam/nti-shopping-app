@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nti_shopping_app/core/di/service_locator.dart';
 import 'package:nti_shopping_app/core/storage_helper/startup_helper.dart';
-import 'package:nti_shopping_app/features/home/presentation/view/screens/home_screen.dart';
+import 'package:nti_shopping_app/feature/home/presentation/view/screens/home_screen.dart';
 
 void main() async {
   var startup = serviceLocator<StartupHelper>();
