@@ -1,5 +1,3 @@
-import 'package:nti_shopping_app/core/network/result_api.dart';
-import 'package:nti_shopping_app/features/home/domain/entities/category_entity.dart';
 import 'package:nti_shopping_app/features/home/domain/repo/home_repo_interface.dart';
 
 class GetCategoriesUseCase {
@@ -7,8 +5,8 @@ class GetCategoriesUseCase {
 
   GetCategoriesUseCase({required this.homeRepo});
 
-  Future<ResultApi<List<CategoryEntity>>> call() async {
-    final result = await homeRepo.getCategories();
-    return result;
-  }
+  // Future<ResultApi<List<CategoryEntity>>> call() async {
+  //   final result = await homeRepo.getAllCategories();
+  //   //return result;
+  // }
 }
