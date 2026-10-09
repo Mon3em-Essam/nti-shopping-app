@@ -16,6 +16,8 @@ import 'package:injectable/injectable.dart' as _i526;
 import 'package:nti_shopping_app/core/di/register_modules.dart' as _i1044;
 import 'package:nti_shopping_app/core/storage_helper/app_secure_storage.dart'
     as _i835;
+import 'package:nti_shopping_app/core/storage_helper/startup_helper.dart'
+    as _i383;
 import 'package:nti_shopping_app/features/home/data/api/home_api_imp.dart'
     as _i154;
 import 'package:nti_shopping_app/features/home/data/api/home_api_interface.dart'
@@ -28,6 +30,8 @@ import 'package:nti_shopping_app/features/home/domain/repo/home_data_source_inte
     as _i819;
 import 'package:nti_shopping_app/features/home/domain/repo/home_repo_interface.dart'
     as _i199;
+import 'package:nti_shopping_app/features/home/domain/use_case/get_all_categories_use_case.dart'
+    as _i425;
 import 'package:nti_shopping_app/features/home/domain/use_case/get_all_products_use_case.dart'
     as _i413;
 import 'package:nti_shopping_app/features/home/presentation/view_model/home_cubit.dart'
@@ -45,8 +49,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i835.AppSecureStorage>(
       () => _i835.AppSecureStorage(gh<_i558.FlutterSecureStorage>()),
     );
+    gh.lazySingleton<_i383.StartupHelper>(
+      () => _i383.StartupHelper(gh<_i835.AppSecureStorage>()),
+    );
     gh.factory<_i283.HomeApiInterface>(
-      () => _i154.HomeApiImp(gh<_i835.AppSecureStorage>()),
+      () => _i154.HomeApiImp(gh<_i383.StartupHelper>()),
     );
     gh.factory<_i819.HomeDataSourceInterface>(
       () => _i377.HomeDataSourceImp(gh<_i283.HomeApiInterface>()),
@@ -54,11 +61,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i199.HomeRepoInterface>(
       () => _i783.HomeRepoImp(gh<_i819.HomeDataSourceInterface>()),
     );
+    gh.factory<_i425.GetAllCategoriesUseCase>(
+      () => _i425.GetAllCategoriesUseCase(gh<_i199.HomeRepoInterface>()),
+    );
     gh.factory<_i413.GetAllProductsUseCase>(
       () => _i413.GetAllProductsUseCase(gh<_i199.HomeRepoInterface>()),
     );
     gh.factory<_i348.HomeCubit>(
-      () => _i348.HomeCubit(gh<_i413.GetAllProductsUseCase>()),
+      () => _i348.HomeCubit(
+        gh<_i413.GetAllProductsUseCase>(),
+        gh<_i425.GetAllCategoriesUseCase>(),
+      ),
     );
     return this;
   }

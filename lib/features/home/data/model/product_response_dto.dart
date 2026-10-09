@@ -1,3 +1,4 @@
+import 'package:nti_shopping_app/core/constants/app_constants.dart';
 import 'package:nti_shopping_app/features/home/domain/entities/product_response_entity.dart';
 
 class ProductResponseDto {
@@ -58,7 +59,7 @@ class ProductItemDto {
     id: id ?? 0,
     price: price ?? 10,
     discountPercentage: discountPercentage ?? 7 ,
-    images:images ?? [],
+    images:images ?? [AppConstants.image],
     rating: rating ?? 5.0,
     title: title ?? "",
   );

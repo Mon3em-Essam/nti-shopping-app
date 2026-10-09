@@ -1,7 +1,9 @@
 import 'package:injectable/injectable.dart';
 import 'package:nti_shopping_app/core/network/result_api.dart';
 import 'package:nti_shopping_app/features/home/data/api/home_api_interface.dart';
+import 'package:nti_shopping_app/features/home/data/model/category_item_dto.dart';
 import 'package:nti_shopping_app/features/home/data/model/product_response_dto.dart';
+import 'package:nti_shopping_app/features/home/domain/entities/category_item_entity.dart';
 import 'package:nti_shopping_app/features/home/domain/entities/product_response_entity.dart';
 import 'package:nti_shopping_app/features/home/domain/repo/home_data_source_interface.dart';
 
@@ -20,5 +22,17 @@ class HomeDataSourceImp implements HomeDataSourceInterface {
       case Error<ProductResponseDto>():
         return Error(result.messageError);
     }
+  }
+
+  @override
+  Future<ResultApi<List<CategoryItemEntity>>> getAllCategories()async {
+    final result = await _api.getAllCategories();
+    switch (result) {
+      case Success<List<CategoryItemDto>>():
+        return Success(result.data.map((e) => e.toEntity()).toList());
+
+      case Error<List<CategoryItemDto>>():
+        return Error(result.messageError);
+    } 
   }
 }
