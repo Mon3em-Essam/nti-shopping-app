@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nti_shopping_app/core/widgets/product_item_card.dart';
 import 'package:nti_shopping_app/feature/home/presentation/view/widget/category_item.dart';
 import 'package:nti_shopping_app/feature/home/presentation/view/widget/home_header.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -11,6 +12,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 2), () {
+      if (mounted) setState(() => isLoading = false);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,27 +33,41 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisAlignment: .start,
             children: [
               HomeHeader(),
-              CategoriesWidget(),
+              Skeletonizer(
+                enabled: isLoading,
+                effect: const ShimmerEffect(
+                  baseColor: Color(0xFFEEEEEE),
+                  highlightColor: Color(0xFFFAFAFA),
+                ),
+                child: CategoriesWidget(),
+              ),
               Expanded(
-                child: GridView.builder(
-                  itemCount: 10,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 12,
-                    mainAxisSpacing: 12,
-                    childAspectRatio: 0.55,
+                child: Skeletonizer(
+                  enabled: isLoading,
+                  effect: const ShimmerEffect(
+                    baseColor: Color(0xFFEEEEEE),
+                    highlightColor: Color(0xFFFAFAFA),
                   ),
-                  itemBuilder: (context, index) {
-                    return ProductItemCard(
-                      onTap: () {},
-                      title: "title",
-                      discount: 10,
-                      price: 50,
-                      rating: 5,
-                      image:
-                          "https://cdn.dummyjson.com/product-images/fragrances/gucci-bloom-eau-de/2.webp",
-                    );
-                  },
+                  child: GridView.builder(
+                    itemCount: 10,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 12,
+                      childAspectRatio: 0.55,
+                    ),
+                    itemBuilder: (context, index) {
+                      return ProductItemCard(
+                        onTap: () {},
+                        title: "title",
+                        discount: 10,
+                        price: 50,
+                        rating: 5,
+                        image:
+                            "https://cdn.dummyjson.com/product-images/fragrances/gucci-bloom-eau-de/2.webp",
+                      );
+                    },
+                  ),
                 ),
               ),
             ],
