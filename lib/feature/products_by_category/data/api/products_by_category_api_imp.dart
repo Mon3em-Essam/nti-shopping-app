@@ -23,7 +23,7 @@ class ProductsByCategoryApiImp implements ProductsByCategoryApiInterface {
       );
       final response = await http.get(
         uri,
-        headers: {'Bearer Token': AppConstants.token},
+        headers: {'Authorization': 'Bearer ${AppConstants.token}'},
       );
       final json = jsonDecode(response.body);
       if (response.statusCode >= 200 && response.statusCode < 300) {

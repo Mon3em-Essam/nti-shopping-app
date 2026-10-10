@@ -10,9 +10,12 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:bloc/bloc.dart' as _i923;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
+import 'package:nti_shopping_app/feature/home/domain/repo/home_repo_interface.dart'
+    as _i869;
+import 'package:nti_shopping_app/feature/home/domain/use_case/get_categories_use_case.dart'
+    as _i632;
 import 'package:nti_shopping_app/feature/products_by_category/data/api/products_by_category_api_imp.dart'
     as _i60;
 import 'package:nti_shopping_app/feature/products_by_category/data/api/products_by_category_api_interface.dart'
@@ -40,13 +43,13 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i558.ProductsByCategoryApiInterface>(
       () => _i60.ProductsByCategoryApiImp(),
     );
-    gh.factory<_i923.Cubit<_i873.ProductsByCategoryState>>(
-      () => _i873.ProductsByCategoryCubit(),
-    );
     gh.factory<_i949.ProductsByCategoryDataSourceInterface>(
       () => _i465.ProductsByCategoryDataSourceImp(
         api: gh<_i558.ProductsByCategoryApiInterface>(),
       ),
+    );
+    gh.factory<_i632.GetCategoriesUseCase>(
+      () => _i632.GetCategoriesUseCase(homeRepo: gh<_i869.HomeRepoInterface>()),
     );
     gh.factory<_i994.ProductsByCategoryRepoInterface>(
       () => _i762.ProductsByCategoryRepoImp(
@@ -56,6 +59,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i394.ProductsByCategoryGetUsecase>(
       () => _i394.ProductsByCategoryGetUsecase(
         categoryProductsRepo: gh<_i994.ProductsByCategoryRepoInterface>(),
+      ),
+    );
+    gh.factory<_i873.ProductsByCategoryCubit>(
+      () => _i873.ProductsByCategoryCubit(
+        gh<_i394.ProductsByCategoryGetUsecase>(),
       ),
     );
     return this;
