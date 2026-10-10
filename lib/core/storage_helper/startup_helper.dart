@@ -12,24 +12,13 @@ class StartupHelper {
 
   String get token => _token ?? "";
 
-
   Future<void> startupAppInit() async {
     await _getToken();
   }
-  
-  ///We will change the token after we add the data for the auth.
+
   Future<void> _getToken() async {
+    await _secureStorage.write(AppKeys.token, AppKeys.staticToken);
+
     _token = await _secureStorage.read(AppKeys.token);
   }
-
-  /// when token is not static
-
-  /// String initialRoute() {
-
-  ///   if (_token != null) {
-  ///     return AppRoutes.appSection;
-  ///   } else {
-  ///     return AppRoutes.register;
-  ///   }
-  /// }
 }

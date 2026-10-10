@@ -14,8 +14,12 @@ part 'home_intent.dart';
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this._getAllProductsUseCase, this._getAllCategoriesUseCase)
     : super(HomeInitial());
+
   final GetAllProductsUseCase _getAllProductsUseCase;
   final GetAllCategoriesUseCase _getAllCategoriesUseCase;
+
+  List<ProductItemEntity> products = [];
+  List<CategoryItemEntity> categories = [];
 
   Future<void> intent(HomeIntent intent) async {
     switch (intent) {
@@ -33,8 +37,8 @@ class HomeCubit extends Cubit<HomeState> {
     final result = await _getAllProductsUseCase.invoke();
     switch (result) {
       case Success<ProductResponseEntity>():
-        final listProduct = result.data.list;
-        emit(HProductsSuccess(listProduct));
+        products = result.data.list; 
+        emit(HProductsSuccess(products));
       case Error<ProductResponseEntity>():
         emit(HProductsError(result.messageError));
     }
@@ -45,8 +49,8 @@ class HomeCubit extends Cubit<HomeState> {
     final result = await _getAllCategoriesUseCase.invoke();
     switch (result) {
       case Success<List<CategoryItemEntity>>():
-        emit(HICategoriesSuccess(result.data));
-
+        categories = result.data; 
+        emit(HICategoriesSuccess(categories));
       case Error<List<CategoryItemEntity>>():
         emit(HICategoriesError(result.messageError));
     }

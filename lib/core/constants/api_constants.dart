@@ -1,11 +1,12 @@
 abstract class ApiConstants {
-  static const String baseUrl = 'https://supermarket-dan1.onrender.com/api/';
+  static const String baseUrl = 'https://supermarket-dan1.onrender.com/api/v1';
+
   static String register = "/auth/signUp";
   static String login = "/auth/signIn";
 
   static const String getProductsByCategory = '/home/products/category';
   static const String getAllCategories = '/home/categories';
-  static const String getAllProduct = '/home/products';
+  static const String getAllProduct = '/home/products?skip=0&limit=10';
   static const String getFavorite = '/user/getFavorite';
   static const String addToFavorite = '/user/addFavorite';
   static const String removeFavorite = '/user/deleteFavorite';
@@ -17,4 +18,5 @@ abstract class ApiConstants {
   static const String getUserData = '/portfoilo/userData';
   static const String editUserData = '/portfoilo/editUserData';
   static const String uploadImage = '/portfoilo/addImage';
+  static String productByCategoryEndPoint = "/home/products/category";
 }
