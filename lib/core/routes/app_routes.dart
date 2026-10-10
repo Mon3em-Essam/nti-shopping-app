@@ -3,7 +3,6 @@ import 'package:nti_shopping_app/feature/Onboarding/presentation/view/screens/on
 import 'package:nti_shopping_app/feature/auth/presentation/screens/view/hello_screen.dart';
 import 'package:nti_shopping_app/feature/auth/presentation/screens/view/login_screen.dart';
 import 'package:nti_shopping_app/feature/auth/presentation/screens/view/sign_up_screen.dart';
-import 'package:nti_shopping_app/feature/home/presentation/view/screens/home_screen.dart';
 import 'package:nti_shopping_app/feature/app_section/presentation/view/app_section_view.dart';
 abstract class AppRoutes {
   static const String login = '/login';
@@ -24,7 +23,7 @@ abstract class AppRoutes {
     login: (context) => Login(),
     register: (context) => SignUp(),
     hello: (context) => HelloScreen(),
-    home: (context) => HomeScreen(),
+    home: (context) => const AppSectionView(),
     // register: (context) => BlocProvider<RegisterCubit>(
     //   create: (context) => serviceLocator<RegisterCubit>(),
     //   child: Register(),

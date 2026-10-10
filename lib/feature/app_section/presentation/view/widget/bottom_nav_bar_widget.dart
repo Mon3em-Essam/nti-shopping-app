@@ -21,6 +21,8 @@ class BottomNavBarWidget extends StatelessWidget {
     return BottomNavigationBar(
       currentIndex: currentIndex,
       onTap: onTap,
+      type: BottomNavigationBarType.fixed, 
+      backgroundColor: Colors.white,
       items: [
         BottomNavigationBarItem(
           icon: SvgPicture.asset(

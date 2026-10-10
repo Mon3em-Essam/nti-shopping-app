@@ -1,0 +1,38 @@
+import 'package:injectable/injectable.dart';
+import 'package:nti_shopping_app/core/network/result_api.dart';
+import 'package:nti_shopping_app/feature/home/data/api/home_api_interface.dart';
+import 'package:nti_shopping_app/feature/home/data/model/category_item_dto.dart';
+import 'package:nti_shopping_app/feature/home/data/model/product_response_dto.dart';
+import 'package:nti_shopping_app/feature/home/domain/entities/category_item_entity.dart';
+import 'package:nti_shopping_app/feature/home/domain/entities/product_response_entity.dart';
+import 'package:nti_shopping_app/feature/home/domain/repo/home_data_source_interface.dart';
+
+@Injectable(as: HomeDataSourceInterface)
+class HomeDataSourceImp implements HomeDataSourceInterface {
+  final HomeApiInterface _api;
+  HomeDataSourceImp(this._api);
+
+
+  @override
+  Future<ResultApi<ProductResponseEntity>> getAllProducts() async {
+    final result = await _api.getProduct();
+    switch (result) {
+      case Success<ProductResponseDto>():
+        return Success(result.data.toEntity());
+      case Error<ProductResponseDto>():
+        return Error(result.messageError);
+    }
+  }
+
+  @override
+  Future<ResultApi<List<CategoryItemEntity>>> getAllCategories()async {
+    final result = await _api.getAllCategories();
+    switch (result) {
+      case Success<List<CategoryItemDto>>():
+        return Success(result.data.map((e) => e.toEntity()).toList());
+
+      case Error<List<CategoryItemDto>>():
+        return Error(result.messageError);
+    } 
+  }
+}

@@ -1,20 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti_shopping_app/core/theme/app_colors.dart';
+import 'package:nti_shopping_app/feature/home/presentation/view_model/home_cubit.dart';
 
 class CategoriesWidget extends StatelessWidget {
   const CategoriesWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 40,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) =>
-            _CategoryItem(name: "name", slug: "ghthhd"),
-        separatorBuilder: (context, index) => SizedBox(width: 10),
-        itemCount: 10,
-      ),
+    return BlocBuilder<HomeCubit, HomeState>(
+      buildWhen: (previous, current) =>
+          current is HICategoriesLoading ||
+          current is HICategoriesSuccess ||
+          current is HICategoriesError,
+      builder: (context, state) {
+        final cubit = context.read<HomeCubit>();
+
+        if (state is HICategoriesLoading && cubit.categories.isEmpty) {
+          return const SizedBox(
+            height: 40,
+            child: Center(child: CircularProgressIndicator()),
+          );
+        }
+
+        if (state is HICategoriesError && cubit.categories.isEmpty) {
+          return SizedBox(
+            height: 40,
+            child: Text(state.error, style: const TextStyle(color: Colors.red)),
+          );
+        }
+
+        return SizedBox(
+          height: 40,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemCount: cubit.categories.length,
+            separatorBuilder: (context, index) => const SizedBox(width: 10),
+            itemBuilder: (context, index) {
+              final category = cubit.categories[index];
+              return _CategoryItem(name: category.name, slug: category.slug);
+            },
+          ),
+        );
+      },
     );
   }
 }
@@ -28,13 +56,15 @@ class _CategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(8),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: AppColors.primaryColorBlack),
         color: Colors.transparent,
       ),
-      child: Text(name, style: Theme.of(context).textTheme.labelMedium),
+      child: Center(
+        child: Text(name, style: Theme.of(context).textTheme.labelMedium),
+      ),
     );
   }
 }
