@@ -15,18 +15,18 @@ class CategoriesWidget extends StatelessWidget {
           current is HICategoriesError,
       builder: (context, state) {
         final cubit = context.read<HomeCubit>();
-
-        if (state is HICategoriesLoading && cubit.categories.isEmpty) {
-          return const SizedBox(
-            height: 40,
-            child: Center(child: CircularProgressIndicator()),
-          );
-        }
+        final bool isLoading =
+            cubit.categories.isEmpty && state is! HICategoriesError;
 
         if (state is HICategoriesError && cubit.categories.isEmpty) {
           return SizedBox(
             height: 40,
-            child: Text(state.error, style: const TextStyle(color: Colors.red)),
+            child: Center(
+              child: Text(
+                state.error,
+                style: const TextStyle(color: Colors.red),
+              ),
+            ),
           );
         }
 
@@ -34,9 +34,17 @@ class CategoriesWidget extends StatelessWidget {
           height: 40,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
-            itemCount: cubit.categories.length,
+            physics: const BouncingScrollPhysics(),
+            itemCount: isLoading ? 6 : cubit.categories.length,
             separatorBuilder: (context, index) => const SizedBox(width: 10),
             itemBuilder: (context, index) {
+              if (isLoading) {
+                return const _CategoryItem(
+                  name: "Category",
+                  slug: "placeholder",
+                );
+              }
+
               final category = cubit.categories[index];
               return _CategoryItem(name: category.name, slug: category.slug);
             },
