@@ -49,7 +49,7 @@ class ProductItemCard extends StatelessWidget {
                       topRight: Radius.circular(18),
                     ),
                     child: SizedBox(
-                      height: 150,
+                      height: 135, 
                       width: double.infinity,
                       child: CachedNetworkImage(
                         imageUrl: image,

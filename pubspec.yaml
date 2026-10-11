@@ -17,9 +17,10 @@ dependencies:
   cached_network_image: ^3.4.1
   get_it: ^7.7.0
   injectable: ^2.5.0
+  flutter_secure_storage: ^11.2.0
   google_fonts: ^8.2.1
   bloc: ^8.1.4
-  meta: 1.18.0
+  meta: ^1.18.3
   http: ^1.6.0
   flutter_screenutil: ^5.9.3
   shared_preferences: ^2.5.6
