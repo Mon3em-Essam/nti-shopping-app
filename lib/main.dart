@@ -6,17 +6,20 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nti_shopping_app/core/theme/app_theme.dart';
 import 'core/routes/app_routes.dart';
 
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-  
-  void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+void main() async {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   configureDependencies();
 
   final startup = serviceLocator<StartupHelper>();
   await startup.startupAppInit();
 
-  final String initRoute = await initialRoute();
+  await Future.delayed(const Duration(seconds: 2));
+  FlutterNativeSplash.remove();
 
+  final String initRoute = await initialRoute();
   runApp(MyApp(initRoute: initRoute));
 }
 
