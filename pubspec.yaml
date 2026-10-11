@@ -27,6 +27,7 @@ dependencies:
   smooth_page_indicator: ^3.0.0
   flutter_svg: ^2.3.0
   skeletonizer: ^3.0.0
+  flutter_native_splash: ^2.4.8
 
 dev_dependencies:
   flutter_test:
@@ -35,9 +36,18 @@ dev_dependencies:
   flutter_lints: ^6.0.0
   build_runner: ^2.4.12
   injectable_generator: ^2.6.2
+  flutter_launcher_icons: ^0.14.4
 
 flutter:
   uses-material-design: true
   assets:
     - assets/images/
     - assets/icons/
+ 
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/app_icon.png"
+  adaptive_icon_background: "#EBEBEB"
+  adaptive_icon_foreground: "assets/icons/app_icon_logo.png"
+  remove_alpha_ios: true

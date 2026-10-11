@@ -8,12 +8,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'core/routes/app_routes.dart';
 
 import 'feature/Onboarding/presentation/view/screens/onboarding_screen.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   final prefs = await SharedPreferences.getInstance();
   final bool isFirstTime = prefs.getBool('isFirstTime') ?? true;
+
+  await Future.delayed(const Duration(seconds: 2));
+  FlutterNativeSplash.remove();
 
   runApp(MyApp(isFirstTime: isFirstTime));
 }
