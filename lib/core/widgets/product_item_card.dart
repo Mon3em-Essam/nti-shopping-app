@@ -99,7 +99,7 @@ class ProductItemCard extends StatelessWidget {
                   ),
 
                   Card(
-                    color: AppColors.defaultHintTextColor,
+                    color: Colors.grey,
                     child: Padding(
                       padding: EdgeInsets.all(4.0),
                       child: Text(
