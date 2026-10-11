@@ -1,7 +1,7 @@
 import 'package:nti_shopping_app/core/constants/app_constants.dart';
 
-class ProductByCategoryEntity {
-  ProductByCategoryEntity({
+class ProductsByCategoryEntity {
+  ProductsByCategoryEntity({
     this.id = 1,
     this.title = "title",
     this.description = "description",
