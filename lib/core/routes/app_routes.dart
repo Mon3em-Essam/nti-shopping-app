@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti_shopping_app/feature/Onboarding/presentation/view/screens/onboarding_screen.dart';
 import 'package:nti_shopping_app/feature/auth/presentation/screens/view/hello_screen.dart';
 import 'package:nti_shopping_app/feature/auth/presentation/screens/view/login_screen.dart';
 import 'package:nti_shopping_app/feature/auth/presentation/screens/view/sign_up_screen.dart';
 import 'package:nti_shopping_app/feature/app_section/presentation/view/app_section_view.dart';
+import 'package:nti_shopping_app/feature/products_by_category/presentation/view/screens/products_by_category_screen.dart';
+
 abstract class AppRoutes {
   static const String login = '/login';
   static const String onBoarding = '/onboarding';
@@ -13,7 +16,7 @@ abstract class AppRoutes {
   static const String home = '/home';
   static const String updateAcc = '/updateAcc';
   static const String search = '/search';
-
+  static const String productsByCategory = '/productsByCategory';
   static Map<String, WidgetBuilder> routes = {
     onBoarding: (context) => OnboardingScreen(),
     // login: (context) => BlocProvider(
@@ -29,6 +32,8 @@ abstract class AppRoutes {
     //   child: Register(),
     // ),
     appSection: (context) => AppSectionView(),
+
     // search: (context) => SearchScreen(),
+    productsByCategory: (context) => ProductsByCategoryScreen(),
   };
 }

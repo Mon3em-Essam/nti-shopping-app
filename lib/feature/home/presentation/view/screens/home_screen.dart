@@ -118,7 +118,9 @@ class _HomeScreenBody extends StatelessWidget {
 
           final product = cubit.products[index];
           return ProductItemCard(
-            onTap: () {},
+            onTap: () {
+              
+            },
             title: product.title,
             discount: product.discountPercentage,
             price: product.price,

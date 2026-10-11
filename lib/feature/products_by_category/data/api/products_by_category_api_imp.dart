@@ -19,7 +19,7 @@ class ProductsByCategoryApiImp implements ProductsByCategoryApiInterface {
   ) async {
     try {
       final uri = Uri.parse(
-        '${ApiConstants.baseUrl}${ApiConstants.productByCategoryEndPoint}/smartphones?skip=$skip&limit=$limit',
+        '${ApiConstants.baseUrl}${ApiConstants.productByCategoryEndPoint}/$category?skip=$skip&limit=$limit',
       );
       final response = await http.get(
         uri,
