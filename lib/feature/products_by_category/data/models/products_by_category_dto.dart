@@ -1,5 +1,5 @@
 import 'package:nti_shopping_app/core/constants/app_constants.dart';
-import 'package:nti_shopping_app/feature/products_by_category/domain/entities/product_by_category_entity.dart';
+import 'package:nti_shopping_app/feature/products_by_category/domain/entities/products_by_category_entity.dart';
 
 class ProductsByCategoryListDto {
   List<ProductsByCategoryDto>? list;
@@ -91,8 +91,8 @@ class ProductsByCategoryDto {
     thumbnail = json['thumbnail'];
   }
 
-  ProductByCategoryEntity toEntity() {
-    return ProductByCategoryEntity(
+  ProductsByCategoryEntity toEntity() {
+    return ProductsByCategoryEntity(
       id: id ?? 0,
       title: title ?? "title",
       description: description ?? "description",
