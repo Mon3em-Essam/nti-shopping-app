@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti_shopping_app/feature/Onboarding/presentation/view/screens/onboarding_screen.dart';
 import 'package:nti_shopping_app/feature/auth/presentation/screens/view/hello_screen.dart';
 import 'package:nti_shopping_app/feature/auth/presentation/screens/view/login_screen.dart';

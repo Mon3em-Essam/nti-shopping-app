@@ -18,6 +18,9 @@ class ProductsByCategoryApiImp implements ProductsByCategoryApiInterface {
     int limit,
   ) async {
     try {
+      if (category.contains(' ')) {
+        category = category.replaceAll(' ', '-');
+      }
       final uri = Uri.parse(
         '${ApiConstants.baseUrl}${ApiConstants.productByCategoryEndPoint}/$category?skip=$skip&limit=$limit',
       );

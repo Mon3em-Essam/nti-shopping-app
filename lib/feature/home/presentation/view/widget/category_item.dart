@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti_shopping_app/core/routes/app_routes.dart';
 import 'package:nti_shopping_app/core/theme/app_colors.dart';
 import 'package:nti_shopping_app/feature/home/presentation/view_model/home_cubit.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class CategoriesWidget extends StatelessWidget {
   const CategoriesWidget({super.key});
@@ -18,9 +19,25 @@ class CategoriesWidget extends StatelessWidget {
         final cubit = context.read<HomeCubit>();
 
         if (state is HICategoriesLoading && cubit.categories.isEmpty) {
-          return const SizedBox(
+          return  SizedBox(
             height: 40,
-            child: Center(child: CircularProgressIndicator()),
+            child: Center(
+              child: Skeletonizer(
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 8,
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(width: 10),
+                  itemBuilder: (context, index) {
+            
+                    return _CategoryItem(
+                      name: 'category.name',
+                      slug: 'slug',
+                    );
+                  },
+                ),
+              ),
+            ),
           );
         }
 
