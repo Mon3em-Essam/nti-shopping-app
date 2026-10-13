@@ -1,3 +1,5 @@
+import 'package:nti_shopping_app/feature/product_details/domain/entities/product_entity.dart';
+
 class ProductResponseEntity {
   List<ProductItemEntity> list;
   int total;
@@ -15,6 +17,7 @@ class ProductResponseEntity {
 class ProductItemEntity {
   int id;
   String title;
+  String description;
   double price;
   double discountPercentage;
   double rating;
@@ -23,9 +26,21 @@ class ProductItemEntity {
   ProductItemEntity({
     this.id = 0,
     this.title = 'title',
+    this.description = 'description',
     this.price = 10,
     this.discountPercentage = 7,
     this.rating = 5.0,
     this.images = const [],
   });
+  
+  ProductEntity toDetailsEntity() {
+  return ProductEntity(
+    id: id ,
+    title: title,
+    description: description,
+    price: price ,
+    discount: discountPercentage,
+    images: images ,
+  );
+}
 }

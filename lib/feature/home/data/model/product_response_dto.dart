@@ -32,6 +32,7 @@ class ProductResponseDto {
 class ProductItemDto {
   int? id;
   String? title;
+    String? description;
   double? price;
   double? discountPercentage;
   double? rating;
@@ -40,6 +41,7 @@ class ProductItemDto {
   ProductItemDto({
     this.id,
     this.title,
+    this.description,
     this.price,
     this.discountPercentage,
     this.rating,
@@ -49,6 +51,7 @@ class ProductItemDto {
   ProductItemDto.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
+     description = json['description'];
     price = json['price'];
     discountPercentage = json['discountPercentage'];
     rating = json['rating'];
@@ -58,6 +61,7 @@ class ProductItemDto {
   ProductItemEntity toEntity() => ProductItemEntity(
     id: id ?? 0,
     price: price ?? 10,
+    description: description ?? "",
     discountPercentage: discountPercentage ?? 7 ,
     images:images ?? [AppConstants.image],
     rating: rating ?? 5.0,

@@ -1,4 +1,5 @@
 import 'package:nti_shopping_app/core/constants/app_constants.dart';
+import 'package:nti_shopping_app/feature/product_details/domain/entities/product_entity.dart';
 
 class ProductsByCategoryEntity {
   ProductsByCategoryEntity({
@@ -42,4 +43,15 @@ class ProductsByCategoryEntity {
   int minimumOrderQuantity;
   List<String> images;
   String thumbnail;
+  
+  ProductEntity toDetailsEntity() {
+  return ProductEntity(
+    id: id ,
+    title: title,
+    description: description,
+    price: price ,
+    discount: discountPercentage,
+    images: images ,
+  );
+}
 }

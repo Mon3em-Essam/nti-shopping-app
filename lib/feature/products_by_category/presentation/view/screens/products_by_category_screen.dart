@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti_shopping_app/core/di/service_locator.dart';
+import 'package:nti_shopping_app/core/routes/app_routes.dart';
 import 'package:nti_shopping_app/core/theme/app_colors.dart';
 import 'package:nti_shopping_app/core/widgets/product_item_card.dart';
 import 'package:nti_shopping_app/feature/products_by_category/domain/entities/products_by_category_entity.dart';
@@ -92,14 +93,23 @@ class _ProductsByCategoryScreenState extends State<ProductsByCategoryScreen> {
       key: PageStorageKey('value'),
       controller: _scrollController,
       itemCount: data.length,
-      itemBuilder: (context, index) => ProductItemCard(
-        onTap: () {},
-        title: data[index].title,
-        discount: data[index].discountPercentage,
-        price: data[index].price,
-        rating: data[index].rating,
-        image: data[index].images[0],
-      ),
+      itemBuilder: (context, index) {
+  final product = data[index];
+  return ProductItemCard(
+    onTap: () {
+      Navigator.pushNamed(
+        context,
+        AppRoutes.details,
+        arguments: product.toDetailsEntity(),
+      );
+    },
+    title: product.title,
+    discount: product.discountPercentage,
+    price: product.price,
+    rating: product.rating,
+    image: product.images[0],
+  );
+},
 
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
