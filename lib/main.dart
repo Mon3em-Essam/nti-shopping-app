@@ -6,9 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nti_shopping_app/core/theme/app_theme.dart';
 import 'core/routes/app_routes.dart';
 
-
-  
-  void main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   configureDependencies();
 
@@ -16,7 +14,6 @@ import 'core/routes/app_routes.dart';
   await startup.startupAppInit();
 
   final String initRoute = await initialRoute();
-
   runApp(MyApp(initRoute: initRoute));
 }
 

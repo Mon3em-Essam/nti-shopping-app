@@ -18,12 +18,15 @@ class ProductsByCategoryApiImp implements ProductsByCategoryApiInterface {
     int limit,
   ) async {
     try {
+      if (category.contains(' ')) {
+        category = category.replaceAll(' ', '-');
+      }
       final uri = Uri.parse(
-        '${ApiConstants.baseUrl}${ApiConstants.productByCategoryEndPoint}/smartphones?skip=$skip&limit=$limit',
+        '${ApiConstants.baseUrl}${ApiConstants.productByCategoryEndPoint}/$category?skip=$skip&limit=$limit',
       );
       final response = await http.get(
         uri,
-        headers: {'Bearer Token': AppConstants.token},
+        headers: {'Authorization': 'Bearer ${AppConstants.token}'},
       );
       final json = jsonDecode(response.body);
       if (response.statusCode >= 200 && response.statusCode < 300) {

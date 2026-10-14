@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nti_shopping_app/core/routes/app_routes.dart';
 import 'package:nti_shopping_app/core/theme/app_colors.dart';
 import 'package:nti_shopping_app/feature/home/presentation/view_model/home_cubit.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class CategoriesWidget extends StatelessWidget {
   const CategoriesWidget({super.key});
@@ -17,9 +19,25 @@ class CategoriesWidget extends StatelessWidget {
         final cubit = context.read<HomeCubit>();
 
         if (state is HICategoriesLoading && cubit.categories.isEmpty) {
-          return const SizedBox(
+          return  SizedBox(
             height: 40,
-            child: Center(child: CircularProgressIndicator()),
+            child: Center(
+              child: Skeletonizer(
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 8,
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(width: 10),
+                  itemBuilder: (context, index) {
+            
+                    return _CategoryItem(
+                      name: 'category.name',
+                      slug: 'slug',
+                    );
+                  },
+                ),
+              ),
+            ),
           );
         }
 
@@ -55,15 +73,24 @@ class _CategoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppColors.primaryColorBlack),
-        color: Colors.transparent,
-      ),
-      child: Center(
-        child: Text(name, style: Theme.of(context).textTheme.labelMedium),
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(
+          context,
+          AppRoutes.productsByCategory,
+          arguments: name,
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: AppColors.primaryColorBlack),
+          color: Colors.transparent,
+        ),
+        child: Center(
+          child: Text(name, style: Theme.of(context).textTheme.labelMedium),
+        ),
       ),
     );
   }
