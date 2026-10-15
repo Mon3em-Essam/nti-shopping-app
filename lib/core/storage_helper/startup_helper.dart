@@ -17,8 +17,11 @@ class StartupHelper {
   }
 
   Future<void> _getToken() async {
-    await _secureStorage.write(AppKeys.token, AppKeys.staticToken);
-
     _token = await _secureStorage.read(AppKeys.token);
+  }
+
+  Future<void> saveToken(String newToken) async {
+    await _secureStorage.write(AppKeys.token, newToken);
+    _token = newToken;
   }
 }

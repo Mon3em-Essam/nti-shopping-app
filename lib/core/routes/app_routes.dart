@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nti_shopping_app/feature/Onboarding/presentation/view/screens/onboarding_screen.dart';
-import 'package:nti_shopping_app/feature/auth/presentation/screens/view/hello_screen.dart';
-import 'package:nti_shopping_app/feature/auth/presentation/screens/view/login_screen.dart';
-import 'package:nti_shopping_app/feature/auth/presentation/screens/view/sign_up_screen.dart';
+import 'package:nti_shopping_app/feature/auth/presentation/view/hello_screen.dart';
+import 'package:nti_shopping_app/feature/auth/presentation/view/login_screen.dart';
+import 'package:nti_shopping_app/feature/auth/presentation/view/sign_up_screen.dart';
 import 'package:nti_shopping_app/feature/app_section/presentation/view/app_section_view.dart';
 import 'package:nti_shopping_app/feature/products_by_category/presentation/view/screens/products_by_category_screen.dart';
 

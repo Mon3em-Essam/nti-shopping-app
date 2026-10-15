@@ -18,6 +18,22 @@ import 'package:nti_shopping_app/core/storage_helper/app_secure_storage.dart'
     as _i835;
 import 'package:nti_shopping_app/core/storage_helper/startup_helper.dart'
     as _i383;
+import 'package:nti_shopping_app/feature/auth/data/api/auth_api_imp.dart'
+    as _i325;
+import 'package:nti_shopping_app/feature/auth/data/api/auth_api_interface.dart'
+    as _i254;
+import 'package:nti_shopping_app/feature/auth/data/repo/auth_data_source_imp.dart'
+    as _i486;
+import 'package:nti_shopping_app/feature/auth/data/repo/auth_repo_imp.dart'
+    as _i468;
+import 'package:nti_shopping_app/feature/auth/domain/repo/auth_data_source_interface.dart'
+    as _i342;
+import 'package:nti_shopping_app/feature/auth/domain/repo/auth_repo_interface.dart'
+    as _i201;
+import 'package:nti_shopping_app/feature/auth/domain/use_case/login_use_case.dart'
+    as _i126;
+import 'package:nti_shopping_app/feature/auth/presentation/view_model/login_cubit.dart'
+    as _i155;
 import 'package:nti_shopping_app/feature/home/data/api/home_api_imp.dart'
     as _i1038;
 import 'package:nti_shopping_app/feature/home/data/api/home_api_interface.dart'
@@ -65,6 +81,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i558.ProductsByCategoryApiInterface>(
       () => _i60.ProductsByCategoryApiImp(),
     );
+    gh.factory<_i254.AuthApiInterface>(() => _i325.AuthApiImp());
+    gh.factory<_i342.AuthDataSourceInterface>(
+      () => _i486.AuthDataSourceImp(gh<_i254.AuthApiInterface>()),
+    );
     gh.factory<_i949.ProductsByCategoryDataSourceInterface>(
       () => _i465.ProductsByCategoryDataSourceImp(
         api: gh<_i558.ProductsByCategoryApiInterface>(),
@@ -72,6 +92,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i835.AppSecureStorage>(
       () => _i835.AppSecureStorage(gh<_i558.FlutterSecureStorage>()),
+    );
+    gh.factory<_i201.AuthRepoInterface>(
+      () => _i468.AuthRepoImp(gh<_i342.AuthDataSourceInterface>()),
     );
     gh.lazySingleton<_i383.StartupHelper>(
       () => _i383.StartupHelper(gh<_i835.AppSecureStorage>()),
@@ -83,6 +106,13 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i305.HomeApiInterface>(
       () => _i1038.HomeApiImp(gh<_i383.StartupHelper>()),
+    );
+    gh.factory<_i126.LoginUseCase>(
+      () => _i126.LoginUseCase(gh<_i201.AuthRepoInterface>()),
+    );
+    gh.factory<_i155.LoginCubit>(
+      () =>
+          _i155.LoginCubit(gh<_i126.LoginUseCase>(), gh<_i383.StartupHelper>()),
     );
     gh.factory<_i394.ProductsByCategoryGetUsecase>(
       () => _i394.ProductsByCategoryGetUsecase(
