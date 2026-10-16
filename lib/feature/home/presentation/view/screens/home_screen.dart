@@ -41,7 +41,6 @@ class _HomeScreenBody extends StatelessWidget {
                   const HomeHeader(),
                   const SizedBox(height: 15),
 
-                  // سكشن التصنيفات مع الـ Skeletonizer
                   Skeletonizer(
                     enabled: isCategoriesLoading,
                     effect: const ShimmerEffect(
@@ -53,7 +52,6 @@ class _HomeScreenBody extends StatelessWidget {
 
                   const SizedBox(height: 15),
 
-                  // سكشن المنتجات مع الـ Skeletonizer
                   Expanded(
                     child: _buildProductsSection(
                       context,
@@ -77,19 +75,16 @@ class _HomeScreenBody extends StatelessWidget {
     HomeCubit cubit,
     bool isProductsLoading,
   ) {
-    // في حالة وجود خطأ من السيرفر
     if (state is HProductsError && cubit.products.isEmpty) {
       return Center(
         child: Text(state.error, style: const TextStyle(color: Colors.red)),
       );
     }
 
-    // في حالة انتهاء التحميل ولم تعد هناك منتجات
     if (!isProductsLoading && cubit.products.isEmpty) {
       return const Center(child: Text("No products found"));
     }
 
-    // عرض الـ Grid سواء كانت شيمر (أثناء التحميل) أو المنتجات الحقيقية
     return Skeletonizer(
       enabled: isProductsLoading,
       effect: const ShimmerEffect(
@@ -100,9 +95,9 @@ class _HomeScreenBody extends StatelessWidget {
         itemCount: isProductsLoading ? 6 : cubit.products.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          crossAxisSpacing: 12,
-          mainAxisSpacing: 12,
-          childAspectRatio: 0.50, // تم ضبطها لمنع خطأ الـ Overflow
+          childAspectRatio: 0.54,
+          crossAxisSpacing: 16,
+          mainAxisSpacing: 24,
         ),
         itemBuilder: (context, index) {
           if (isProductsLoading) {
