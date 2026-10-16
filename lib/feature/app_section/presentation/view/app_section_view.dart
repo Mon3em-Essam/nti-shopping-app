@@ -10,9 +10,9 @@ import '../view_model/app_section_state.dart';
 import 'widget/bottom_nav_bar_widget.dart';
 
 class AppSectionView extends StatelessWidget {
-  const AppSectionView({super.key});
+  AppSectionView({super.key});
 
-  final List<Widget> screens = const [
+  final List<Widget> screens = [
     HomeScreen(),
     CartScreen(),
     FavouriteScreen(),
