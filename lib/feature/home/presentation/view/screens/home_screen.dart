@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti_shopping_app/core/di/service_locator.dart';
+import 'package:nti_shopping_app/core/routes/app_routes.dart';
 import 'package:nti_shopping_app/core/widgets/product_item_card.dart';
+import 'package:nti_shopping_app/feature/home/domain/entities/product_response_entity.dart' show ProductItemEntity;
 import 'package:nti_shopping_app/feature/home/presentation/view/widget/category_item.dart';
 import 'package:nti_shopping_app/feature/home/presentation/view/widget/home_header.dart';
 import 'package:nti_shopping_app/feature/home/presentation/view_model/home_cubit.dart';
@@ -114,7 +116,7 @@ class _HomeScreenBody extends StatelessWidget {
           final product = cubit.products[index];
           return ProductItemCard(
             onTap: () {
-              
+              Navigator.pushNamed(context, AppRoutes.details,arguments: product.toDetailsEntity());
             },
             title: product.title,
             discount: product.discountPercentage,
