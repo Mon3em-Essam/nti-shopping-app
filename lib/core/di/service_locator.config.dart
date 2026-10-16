@@ -74,6 +74,22 @@ import 'package:nti_shopping_app/feature/products_by_category/domain/usecase/pro
     as _i394;
 import 'package:nti_shopping_app/feature/products_by_category/presentation/view_model/cubit/products_by_category_cubit.dart'
     as _i873;
+import 'package:nti_shopping_app/feature/search/data/api/search_api_imp.dart'
+    as _i244;
+import 'package:nti_shopping_app/feature/search/data/api/search_api_interface.dart'
+    as _i483;
+import 'package:nti_shopping_app/feature/search/data/repo/search_data_source_imp.dart'
+    as _i450;
+import 'package:nti_shopping_app/feature/search/data/repo/search_repo_imp.dart'
+    as _i950;
+import 'package:nti_shopping_app/feature/search/domain/repo/search_data_source_interface.dart'
+    as _i522;
+import 'package:nti_shopping_app/feature/search/domain/repo/search_repo_interface.dart'
+    as _i305;
+import 'package:nti_shopping_app/feature/search/domain/use_case/search_use_case.dart'
+    as _i661;
+import 'package:nti_shopping_app/feature/search/presentation/view_model/search_cubit.dart'
+    as _i179;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -127,6 +143,8 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i402.CartAddCubit>(
       () => _i402.CartAddCubit(gh<_i454.CartAddUseCase>()),
+    gh.factory<_i483.SearchApiInterface>(
+      () => _i244.SearchApiImp(gh<_i383.StartupHelper>()),
     );
     gh.factory<_i394.ProductsByCategoryGetUsecase>(
       () => _i394.ProductsByCategoryGetUsecase(
@@ -135,6 +153,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i1050.HomeDataSourceInterface>(
       () => _i478.HomeDataSourceImp(gh<_i305.HomeApiInterface>()),
+    );
+    gh.factory<_i522.SearchDataSourceInterface>(
+      () => _i450.SearchDataSourceImp(gh<_i483.SearchApiInterface>()),
     );
     gh.factory<_i873.ProductsByCategoryCubit>(
       () => _i873.ProductsByCategoryCubit(
@@ -155,6 +176,15 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i72.GetAllProductsUseCase>(),
         gh<_i884.GetAllCategoriesUseCase>(),
       ),
+    );
+    gh.factory<_i305.SearchRepoInterface>(
+      () => _i950.SearchRepoImp(gh<_i522.SearchDataSourceInterface>()),
+    );
+    gh.factory<_i661.SearchUseCase>(
+      () => _i661.SearchUseCase(gh<_i305.SearchRepoInterface>()),
+    );
+    gh.factory<_i179.SearchCubit>(
+      () => _i179.SearchCubit(gh<_i661.SearchUseCase>()),
     );
     return this;
   }

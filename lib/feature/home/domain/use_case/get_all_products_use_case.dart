@@ -8,5 +8,5 @@ class GetAllProductsUseCase {
   final HomeRepoInterface _repo;
   GetAllProductsUseCase(this._repo);
 
-  Future<ResultApi<ProductResponseEntity>> invoke() => _repo.getAllProducts();
+  Future<ResultApi<ProductResponseEntity>> invoke() async => await _repo.getAllProducts();
 }
