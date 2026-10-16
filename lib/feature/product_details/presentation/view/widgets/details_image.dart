@@ -1,11 +1,11 @@
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:nti_shopping_app/core/theme/app_colors.dart';
 
 class DetailsImage extends StatefulWidget {
-  const DetailsImage({super.key, required this.images});
+  const DetailsImage({super.key, required this.images, this.favoriteOnTap});
+  final Widget? favoriteOnTap;
 
   final List<String> images;
 
@@ -20,45 +20,59 @@ class _DetailsImageState extends State<DetailsImage> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          decoration: BoxDecoration(
-            color: const Color(0xffFCFCFC),
-            borderRadius: BorderRadius.circular(24),
-          ),
-          height: 331,
-          width: double.infinity,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(24),
-            child: CarouselSlider(
-              options: CarouselOptions(
-                height: 331,
-                viewportFraction: 1,
-                enableInfiniteScroll: widget.images.length > 1,
-                autoPlay: false,
-                onPageChanged: (index, reason) {
-                  setState(() {
-                    currentIndex = index;
-                  });
-                },
+        Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: AppColors.decorationColor,
+                borderRadius: BorderRadius.circular(24),
               ),
-              items: widget.images.map((image) {
-                return SizedBox(
-                  width: double.infinity,
-                  child: CachedNetworkImage(
-                    imageUrl: image,
-                    fit: BoxFit.contain,
-                    placeholder: (context, url) => Center(
-                      child: CircularProgressIndicator(
-                        color: AppColors.primaryColor,
-                      ),
-                    ),
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
+              height: 331,
+              width: double.infinity,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(24),
+                child: CarouselSlider(
+                  options: CarouselOptions(
+                    height: 331,
+                    viewportFraction: 1,
+                    enableInfiniteScroll: widget.images.length > 1,
+                    autoPlay: false,
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        currentIndex = index;
+                      });
+                    },
                   ),
-                );
-              }).toList(),
+                  items: widget.images.map((image) {
+                    return SizedBox(
+                      width: double.infinity,
+                      child: CachedNetworkImage(
+                        imageUrl: image,
+                        fit: BoxFit.contain,
+                        placeholder: (context, url) => Center(
+                          child: CircularProgressIndicator(
+                            color: AppColors.primaryColor,
+                          ),
+                        ),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ),
             ),
-          ),
+
+            Positioned(
+              right: 4,
+              child:
+                  widget.favoriteOnTap ??
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.favorite_border_rounded),
+                  ),
+            ),
+          ],
         ),
         const SizedBox(height: 12),
         Row(
@@ -73,7 +87,7 @@ class _DetailsImageState extends State<DetailsImage> {
               decoration: BoxDecoration(
                 color: currentIndex == index
                     ? AppColors.primaryColor
-                    : Colors.grey.shade300,
+                    : AppColors.decoration2Color,
                 borderRadius: BorderRadius.circular(10),
               ),
             ),

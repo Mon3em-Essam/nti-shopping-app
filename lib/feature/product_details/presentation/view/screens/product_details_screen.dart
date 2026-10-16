@@ -11,7 +11,7 @@ class ProductDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffEBEBEB),
+      backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
         title: Text("Details", style: Theme.of(context).textTheme.bodyLarge),
       ),
@@ -33,7 +33,11 @@ class ProductDetails extends StatelessWidget {
       bottomNavigationBar: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(16),
-          child: CustomButton(text: "Add to cart", onTap: () {}),
+          child: CustomButton(
+            text: "Add to cart",
+            onTap: () {},
+            colors: [AppColors.blackButtonColor, AppColors.blackButtonColor],
+          ),
         ),
       ),
     );
