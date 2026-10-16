@@ -20,6 +20,7 @@ class _ProductsByCategoryScreenState extends State<ProductsByCategoryScreen> {
   late ProductsByCategoryCubit _cubit;
   late ScrollController _scrollController;
   late String category;
+
   @override
   Widget build(BuildContext context) {
     category = ModalRoute.of(context)!.settings.arguments as String;
@@ -31,7 +32,18 @@ class _ProductsByCategoryScreenState extends State<ProductsByCategoryScreen> {
         return _cubit;
       },
       child: Scaffold(
-        appBar: AppBar(title: Text(category), centerTitle: true),
+        appBar: AppBar(
+          title: Text(category),
+          centerTitle: true,
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.search),
+              onPressed: () {
+                Navigator.pushNamed(context, AppRoutes.search);
+              },
+            ),
+          ],
+        ),
         body: BlocBuilder<ProductsByCategoryCubit, ProductsByCategoryState>(
           builder: (context, state) {
             if (state is ProductsByCategorySuccess) {
@@ -90,28 +102,18 @@ class _ProductsByCategoryScreenState extends State<ProductsByCategoryScreen> {
 
   Widget _buildGridView(List<ProductsByCategoryEntity> data) {
     return GridView.builder(
-      key: PageStorageKey('value'),
+      key: const PageStorageKey('value'),
       controller: _scrollController,
       itemCount: data.length,
-      itemBuilder: (context, index) {
-  final product = data[index];
-  return ProductItemCard(
-    onTap: () {
-      Navigator.pushNamed(
-        context,
-        AppRoutes.details,
-        arguments: product.toDetailsEntity(),
-      );
-    },
-    title: product.title,
-    discount: product.discountPercentage,
-    price: product.price,
-    rating: product.rating,
-    image: product.images[0],
-  );
-},
-
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      itemBuilder: (context, index) => ProductItemCard(
+        onTap: () {},
+        title: data[index].title,
+        discount: data[index].discountPercentage,
+        price: data[index].price,
+        rating: data[index].rating,
+        image: data[index].images[0],
+      ),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         childAspectRatio: 163 / 288,
         crossAxisSpacing: 16,
@@ -133,7 +135,7 @@ class _ProductsByCategoryScreenState extends State<ProductsByCategoryScreen> {
           image: 'image',
         ),
         itemCount: 10,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 163 / 288,
           crossAxisSpacing: 16,

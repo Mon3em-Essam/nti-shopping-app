@@ -7,6 +7,7 @@ import 'package:nti_shopping_app/feature/app_section/presentation/view/app_secti
 import 'package:nti_shopping_app/feature/product_details/domain/entities/product_entity.dart';
 import 'package:nti_shopping_app/feature/product_details/presentation/view/screens/product_details_screen.dart';
 import 'package:nti_shopping_app/feature/products_by_category/presentation/view/screens/products_by_category_screen.dart';
+import 'package:nti_shopping_app/feature/search/presentation/view/search_screen.dart';
 
 abstract class AppRoutes {
   static const String login = '/login';
@@ -19,12 +20,9 @@ abstract class AppRoutes {
   static const String updateAcc = '/updateAcc';
   static const String search = '/search';
   static const String productsByCategory = '/productsByCategory';
+
   static Map<String, WidgetBuilder> routes = {
     onBoarding: (context) => OnboardingScreen(),
-    // login: (context) => BlocProvider(
-    //   create: (context) => serviceLocator<LoginCubit>(),
-    //   child: Login(),
-    // ),
     login: (context) => Login(),
     register: (context) => SignUp(),
     hello: (context) => HelloScreen(),
@@ -34,13 +32,9 @@ abstract class AppRoutes {
           ModalRoute.of(context)!.settings.arguments as ProductEntity;
       return ProductDetails(product: product);
     },
-    // register: (context) => BlocProvider<RegisterCubit>(
-    //   create: (context) => serviceLocator<RegisterCubit>(),
-    //   child: Register(),
-    // ),
+   
     appSection: (context) => AppSectionView(),
-
-    // search: (context) => SearchScreen(),
+    search: (context) => const SearchScreen(),
     productsByCategory: (context) => ProductsByCategoryScreen(),
   };
 }

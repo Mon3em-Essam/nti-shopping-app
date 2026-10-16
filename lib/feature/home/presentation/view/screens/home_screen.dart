@@ -97,9 +97,9 @@ class _HomeScreenBody extends StatelessWidget {
         itemCount: isProductsLoading ? 6 : cubit.products.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          crossAxisSpacing: 12,
-          mainAxisSpacing: 12,
-          childAspectRatio: 0.50,
+          childAspectRatio: 0.54,
+          crossAxisSpacing: 16,
+          mainAxisSpacing: 24,
         ),
         itemBuilder: (context, index) {
           if (isProductsLoading) {
