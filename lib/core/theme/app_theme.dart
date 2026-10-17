@@ -5,11 +5,11 @@ class AppTheme {
   static ThemeData get lightTheme {
     return ThemeData(
       primaryColor: AppColors.primaryColor,
-      scaffoldBackgroundColor: AppColors.offWhite,
+      scaffoldBackgroundColor: AppColors.backgroundColor,
 
       appBarTheme: const AppBarTheme(
         surfaceTintColor: Colors.transparent,
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.backgroundColor,
         elevation: 0,
         centerTitle: true,
         foregroundColor: AppColors.charcoal,
@@ -119,4 +119,3 @@ class AppTheme {
     );
   }
 }
-

@@ -18,6 +18,28 @@ import 'package:nti_shopping_app/core/storage_helper/app_secure_storage.dart'
     as _i835;
 import 'package:nti_shopping_app/core/storage_helper/startup_helper.dart'
     as _i383;
+import 'package:nti_shopping_app/feature/cart/data/api/cart_api_imp.dart'
+    as _i339;
+import 'package:nti_shopping_app/feature/cart/data/api/cart_api_interface.dart'
+    as _i925;
+import 'package:nti_shopping_app/feature/cart/data/repo/data_source/cart_data_source_imp.dart'
+    as _i159;
+import 'package:nti_shopping_app/feature/cart/data/repo/repo/cart_repo_imp.dart'
+    as _i236;
+import 'package:nti_shopping_app/feature/cart/domain/repo/cart_data_source_interface.dart'
+    as _i242;
+import 'package:nti_shopping_app/feature/cart/domain/repo/cart_repo_interface.dart'
+    as _i489;
+import 'package:nti_shopping_app/feature/cart/domain/use_case/cart_add_use_case.dart'
+    as _i454;
+import 'package:nti_shopping_app/feature/cart/domain/use_case/cart_delete_use_case.dart'
+    as _i963;
+import 'package:nti_shopping_app/feature/cart/domain/use_case/cart_get_use_case.dart'
+    as _i889;
+import 'package:nti_shopping_app/feature/cart/presentation/view_model/cart_add_cubit/cart_add_cubit.dart'
+    as _i402;
+import 'package:nti_shopping_app/feature/cart/presentation/view_model/cart_get_cubit/cart_get_cubit.dart'
+    as _i4;
 import 'package:nti_shopping_app/feature/home/data/api/home_api_imp.dart'
     as _i1038;
 import 'package:nti_shopping_app/feature/home/data/api/home_api_interface.dart'
@@ -81,6 +103,13 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i558.ProductsByCategoryApiInterface>(
       () => _i60.ProductsByCategoryApiImp(),
     );
+    gh.factory<_i925.CartApiInterface>(() => _i339.CartApiImp());
+    gh.factory<_i242.CartDataSourceInterface>(
+      () => _i159.CartDataSourceImp(gh<_i925.CartApiInterface>()),
+    );
+    gh.factory<_i489.CartRepoInterface>(
+      () => _i236.CartRepoImp(gh<_i242.CartDataSourceInterface>()),
+    );
     gh.factory<_i949.ProductsByCategoryDataSourceInterface>(
       () => _i465.ProductsByCategoryDataSourceImp(
         api: gh<_i558.ProductsByCategoryApiInterface>(),
@@ -89,8 +118,20 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i835.AppSecureStorage>(
       () => _i835.AppSecureStorage(gh<_i558.FlutterSecureStorage>()),
     );
+    gh.factory<_i454.CartAddUseCase>(
+      () => _i454.CartAddUseCase(gh<_i489.CartRepoInterface>()),
+    );
+    gh.factory<_i963.CartDeleteUseCase>(
+      () => _i963.CartDeleteUseCase(gh<_i489.CartRepoInterface>()),
+    );
+    gh.factory<_i889.CartGetUseCase>(
+      () => _i889.CartGetUseCase(gh<_i489.CartRepoInterface>()),
+    );
     gh.lazySingleton<_i383.StartupHelper>(
       () => _i383.StartupHelper(gh<_i835.AppSecureStorage>()),
+    );
+    gh.factory<_i4.CartGetCubit>(
+      () => _i4.CartGetCubit(gh<_i889.CartGetUseCase>()),
     );
     gh.factory<_i994.ProductsByCategoryRepoInterface>(
       () => _i762.ProductsByCategoryRepoImp(
@@ -100,6 +141,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i305.HomeApiInterface>(
       () => _i1038.HomeApiImp(gh<_i383.StartupHelper>()),
     );
+    gh.factory<_i402.CartAddCubit>(
+      () => _i402.CartAddCubit(gh<_i454.CartAddUseCase>()),
     gh.factory<_i483.SearchApiInterface>(
       () => _i244.SearchApiImp(gh<_i383.StartupHelper>()),
     );
