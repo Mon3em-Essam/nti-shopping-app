@@ -105,14 +105,23 @@ class _ProductsByCategoryScreenState extends State<ProductsByCategoryScreen> {
       key: const PageStorageKey('value'),
       controller: _scrollController,
       itemCount: data.length,
-      itemBuilder: (context, index) => ProductItemCard(
-        onTap: () {},
-        title: data[index].title,
-        discount: data[index].discountPercentage,
-        price: data[index].price,
-        rating: data[index].rating,
-        image: data[index].images[0],
-      ),
+      itemBuilder: (context, index) {
+        final product = data[index];
+        return ProductItemCard(
+          onTap: () {
+            Navigator.pushNamed(
+              context,
+              AppRoutes.details,
+              arguments: product.toDetailsEntity(),
+            );
+          },
+          title: data[index].title,
+          discount: data[index].discountPercentage,
+          price: data[index].price,
+          rating: data[index].rating,
+          image: data[index].images[0],
+        );
+      },
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         childAspectRatio: 163 / 288,
