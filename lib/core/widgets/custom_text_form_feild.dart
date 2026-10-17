@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomTextFormField extends StatelessWidget {
+class CustomTextFormField extends StatefulWidget {
   const CustomTextFormField({
     super.key,
     this.label,
@@ -23,27 +23,62 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? prefixIcon;
 
   @override
+  State<CustomTextFormField> createState() =>
+      _CustomTextFormFieldState();
+}
+
+class _CustomTextFormFieldState
+    extends State<CustomTextFormField> {
+  late bool isObscured;
+
+  @override
+  void initState() {
+    super.initState();
+    isObscured = widget.obscureText;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (label != null && label!.isNotEmpty) ...[
+        if (widget.label != null &&
+            widget.label!.isNotEmpty) ...[
           Text(
-            label!,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+            widget.label!,
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+            ),
           ),
           const SizedBox(height: 5),
         ],
         TextFormField(
-          controller: controller,
-          keyboardType: keyboardType,
-          obscureText: obscureText,
-          validator: validator,
-          onChanged: onChanged,
+          controller: widget.controller,
+          keyboardType: widget.keyboardType,
+          obscureText: isObscured,
+          validator: widget.validator,
+          onChanged: widget.onChanged,
           decoration: InputDecoration(
-            hintText: hint,
-            prefixIcon: prefixIcon,
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+            hintText: widget.hint,
+            prefixIcon: widget.prefixIcon,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            suffixIcon: widget.obscureText
+                ? IconButton(
+                    icon: Icon(
+                      isObscured
+                          ? Icons.visibility_off
+                          : Icons.visibility,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        isObscured = !isObscured;
+                      });
+                    },
+                  )
+                : null,
           ),
         ),
       ],

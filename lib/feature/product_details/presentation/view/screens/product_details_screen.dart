@@ -17,17 +17,19 @@ class ProductDetails extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            DetailsImage(images: product.images),
-            ProductData(
-              title: product.title,
-              discount: product.discount,
-              price: product.price,
-            ),
-            SizedBox(height: 33),
-            ProductDescription(description: product.description),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              DetailsImage(images: product.images),
+              ProductData(
+                title: product.title,
+                discount: product.discount,
+                price: product.price,
+              ),
+              SizedBox(height: 33),
+              ProductDescription(description: product.description),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: SafeArea(
