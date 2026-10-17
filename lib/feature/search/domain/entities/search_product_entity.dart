@@ -1,3 +1,5 @@
+import 'package:nti_shopping_app/feature/product_details/domain/entities/product_entity.dart';
+
 class SearchProductEntity {
   final int id;
   final String title;
@@ -24,4 +26,14 @@ class SearchProductEntity {
     required this.images,
     required this.thumbnail,
   });
+  ProductEntity toDetailsEntity() {
+  return ProductEntity(
+    id: id ,
+    title: title,
+    description: description,
+    price: price ,
+    discount: discountPercentage,
+    images: images ,
+  );
+}
 }
