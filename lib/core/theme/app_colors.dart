@@ -28,5 +28,5 @@ class AppColors {
     0xFF3D1A6E,
   ).withValues(alpha: 0.12);
   static Color blackButtonColor = const Color(0xFF212121);
-  static const Color cardBackground = Color(0xFFFCFCFC);
+  static const Color cardBackground = Color(0xFFFAFAFA);
 }

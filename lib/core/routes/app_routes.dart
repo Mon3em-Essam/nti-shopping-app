@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nti_shopping_app/core/di/service_locator.dart';
 import 'package:nti_shopping_app/feature/Onboarding/presentation/view/screens/onboarding_screen.dart';
 import 'package:nti_shopping_app/feature/auth/presentation/view/hello_screen.dart';
 import 'package:nti_shopping_app/feature/auth/presentation/view/login_screen.dart';
 import 'package:nti_shopping_app/feature/auth/presentation/view/sign_up_screen.dart';
 import 'package:nti_shopping_app/feature/app_section/presentation/view/app_section_view.dart';
+import 'package:nti_shopping_app/feature/cart/presentation/view/screens/cart_screen.dart';
+import 'package:nti_shopping_app/feature/cart/presentation/view_model/cart_get_cubit/cart_get_cubit.dart';
 import 'package:nti_shopping_app/feature/product_details/domain/entities/product_entity.dart';
 import 'package:nti_shopping_app/feature/product_details/presentation/view/screens/product_details_screen.dart';
 import 'package:nti_shopping_app/feature/products_by_category/presentation/view/screens/products_by_category_screen.dart';
@@ -20,6 +24,7 @@ abstract class AppRoutes {
   static const String updateAcc = '/updateAcc';
   static const String search = '/search';
   static const String productsByCategory = '/productsByCategory';
+  static const String cart = '/cart';
 
   static Map<String, WidgetBuilder> routes = {
     onBoarding: (context) => OnboardingScreen(),
