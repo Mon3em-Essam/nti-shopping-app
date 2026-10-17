@@ -27,7 +27,7 @@ class CustomTextFormField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (label != null) ...[
+        if (label != null && label!.isNotEmpty) ...[
           Text(
             label!,
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
