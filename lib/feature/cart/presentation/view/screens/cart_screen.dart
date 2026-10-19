@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti_shopping_app/core/di/service_locator.dart';
 import 'package:nti_shopping_app/core/theme/app_colors.dart';
-import 'package:nti_shopping_app/feature/cart/domain/entities/cart_entity.dart';
 import 'package:nti_shopping_app/feature/cart/presentation/view/widget/cart_item.dart';
 import 'package:nti_shopping_app/feature/cart/presentation/view_model/cart_get_cubit/cart_get_cubit.dart';
 import 'package:nti_shopping_app/feature/cart/presentation/view_model/cart_get_cubit/cart_get_intent.dart';
@@ -31,8 +30,7 @@ class _CartScreenBody extends StatelessWidget {
         child: BlocBuilder<CartGetCubit, CartGetState>(
           builder: (context, state) {
             if (state is CartGetSuccess) {
-              List<CartEntity> data = state.cartItems;
-              data = [CartEntity()];
+              final data = state.cartItems;
               if (data.isEmpty) {
                 return Column(
                   mainAxisAlignment: .center,
