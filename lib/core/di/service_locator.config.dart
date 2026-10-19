@@ -18,6 +18,20 @@ import 'package:nti_shopping_app/core/storage_helper/app_secure_storage.dart'
     as _i835;
 import 'package:nti_shopping_app/core/storage_helper/startup_helper.dart'
     as _i383;
+import 'package:nti_shopping_app/feature/account/data/domain/repo/account_repo_imp.dart'
+    as _i216;
+import 'package:nti_shopping_app/feature/account/data/domain/repo/account_repo_interface.dart'
+    as _i403;
+import 'package:nti_shopping_app/feature/account/data/domain/use_case/get_account_use_case.dart'
+    as _i564;
+import 'package:nti_shopping_app/feature/account/data/domain/use_case/update_account_use_case.dart'
+    as _i103;
+import 'package:nti_shopping_app/feature/account/data/repo/data_source/account_data_source_imp.dart'
+    as _i42;
+import 'package:nti_shopping_app/feature/account/data/repo/data_source/account_data_source_interface.dart'
+    as _i587;
+import 'package:nti_shopping_app/feature/account/presentation/view_model/account_cubit.dart'
+    as _i70;
 import 'package:nti_shopping_app/feature/auth/data/api/auth_api_imp.dart'
     as _i325;
 import 'package:nti_shopping_app/feature/auth/data/api/auth_api_interface.dart'
@@ -119,15 +133,19 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i558.ProductsByCategoryApiInterface>(
       () => _i60.ProductsByCategoryApiImp(),
     );
-    gh.factory<_i254.AuthApiInterface>(() => _i325.AuthApiImp());
-    gh.factory<_i342.AuthDataSourceInterface>(
-      () => _i486.AuthDataSourceImp(gh<_i254.AuthApiInterface>()),
     gh.factory<_i925.CartApiInterface>(() => _i339.CartApiImp());
     gh.factory<_i242.CartDataSourceInterface>(
       () => _i159.CartDataSourceImp(gh<_i925.CartApiInterface>()),
     );
+    gh.factory<_i587.AccountDataSourceInterface>(
+      () => _i42.AccountDataSourceImp(),
+    );
+    gh.factory<_i254.AuthApiInterface>(() => _i325.AuthApiImp());
     gh.factory<_i489.CartRepoInterface>(
       () => _i236.CartRepoImp(gh<_i242.CartDataSourceInterface>()),
+    );
+    gh.factory<_i342.AuthDataSourceInterface>(
+      () => _i486.AuthDataSourceImp(gh<_i254.AuthApiInterface>()),
     );
     gh.factory<_i949.ProductsByCategoryDataSourceInterface>(
       () => _i465.ProductsByCategoryDataSourceImp(
@@ -139,6 +157,10 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i201.AuthRepoInterface>(
       () => _i468.AuthRepoImp(gh<_i342.AuthDataSourceInterface>()),
+    );
+    gh.factory<_i403.AccountRepoInterface>(
+      () => _i216.AccountRepoImp(gh<_i587.AccountDataSourceInterface>()),
+    );
     gh.factory<_i454.CartAddUseCase>(
       () => _i454.CartAddUseCase(gh<_i489.CartRepoInterface>()),
     );
@@ -154,6 +176,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i4.CartGetCubit>(
       () => _i4.CartGetCubit(gh<_i889.CartGetUseCase>()),
     );
+    gh.factory<_i564.GetAccountUseCase>(
+      () => _i564.GetAccountUseCase(gh<_i403.AccountRepoInterface>()),
+    );
+    gh.factory<_i103.UpdateAccountUseCase>(
+      () => _i103.UpdateAccountUseCase(gh<_i403.AccountRepoInterface>()),
+    );
     gh.factory<_i994.ProductsByCategoryRepoInterface>(
       () => _i762.ProductsByCategoryRepoImp(
         dataSource: gh<_i949.ProductsByCategoryDataSourceInterface>(),
@@ -162,8 +190,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i305.HomeApiInterface>(
       () => _i1038.HomeApiImp(gh<_i383.StartupHelper>()),
     );
-    gh.factory<_i402.CartAddCubit>(
-      () => _i402.CartAddCubit(gh<_i454.CartAddUseCase>()),
     gh.factory<_i483.SearchApiInterface>(
       () => _i244.SearchApiImp(gh<_i383.StartupHelper>()),
     );
@@ -173,6 +199,15 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i155.LoginCubit>(
       () =>
           _i155.LoginCubit(gh<_i126.LoginUseCase>(), gh<_i383.StartupHelper>()),
+    );
+    gh.factory<_i402.CartAddCubit>(
+      () => _i402.CartAddCubit(gh<_i454.CartAddUseCase>()),
+    );
+    gh.factory<_i70.AccountCubit>(
+      () => _i70.AccountCubit(
+        gh<_i564.GetAccountUseCase>(),
+        gh<_i103.UpdateAccountUseCase>(),
+      ),
     );
     gh.factory<_i394.ProductsByCategoryGetUsecase>(
       () => _i394.ProductsByCategoryGetUsecase(
