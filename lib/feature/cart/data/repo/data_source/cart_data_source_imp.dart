@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:nti_shopping_app/core/network/result_api.dart';
 import 'package:nti_shopping_app/feature/cart/data/api/cart_api_interface.dart';
-import 'package:nti_shopping_app/feature/cart/domain/entities/cart_entity.dart';
+import 'package:nti_shopping_app/feature/cart/data/model/cart_dto.dart';
 import 'package:nti_shopping_app/feature/cart/domain/repo/cart_data_source_interface.dart';
 
 @Injectable(as: CartDataSourceInterface)
@@ -17,5 +17,5 @@ class CartDataSourceImp implements CartDataSourceInterface {
       await _api.deleteFromCart(productId);
 
   @override
-  Future<ResultApi<List<CartEntity>>> getCart() async => await _api.getCart();
+  Future<ResultApi<List<CartDto>>> getCart() async => await _api.getCart();
 }
