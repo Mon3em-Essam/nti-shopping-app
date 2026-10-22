@@ -5,12 +5,16 @@ import 'package:injectable/injectable.dart';
 import 'package:nti_shopping_app/core/constants/api_constants.dart';
 import 'package:nti_shopping_app/core/constants/app_constants.dart';
 import 'package:nti_shopping_app/core/network/result_api.dart';
+import 'package:nti_shopping_app/core/storage_helper/startup_helper.dart';
 import 'package:nti_shopping_app/feature/products_by_category/data/api/products_by_category_api_interface.dart';
 import 'package:nti_shopping_app/feature/products_by_category/data/models/products_by_category_dto.dart';
 import 'package:http/http.dart' as http;
 
 @Injectable(as: ProductsByCategoryApiInterface)
 class ProductsByCategoryApiImp implements ProductsByCategoryApiInterface {
+  final StartupHelper _helper;
+
+  ProductsByCategoryApiImp(this._helper);
   @override
   Future<ResultApi<ProductsByCategoryListDto>> getProductsByCategory(
     String category,
@@ -26,7 +30,7 @@ class ProductsByCategoryApiImp implements ProductsByCategoryApiInterface {
       );
       final response = await http.get(
         uri,
-        headers: {'Authorization': 'Bearer ${AppConstants.token}'},
+        headers: {'Authorization': 'Bearer ${_helper.token}'},
       );
       final json = jsonDecode(response.body);
       if (response.statusCode >= 200 && response.statusCode < 300) {

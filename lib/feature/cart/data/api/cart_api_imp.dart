@@ -4,19 +4,19 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:nti_shopping_app/core/constants/api_constants.dart';
 import 'package:nti_shopping_app/core/constants/app_constants.dart';
-import 'package:nti_shopping_app/core/constants/app_keys.dart';
 import 'package:nti_shopping_app/core/network/result_api.dart';
+import 'package:nti_shopping_app/core/storage_helper/startup_helper.dart';
 import 'package:nti_shopping_app/feature/cart/data/api/cart_api_interface.dart';
-import 'package:nti_shopping_app/feature/cart/domain/entities/cart_entity.dart';
+import 'package:nti_shopping_app/feature/cart/data/model/cart_dto.dart';
 
 @Injectable(as: CartApiInterface)
 class CartApiImp implements CartApiInterface {
-  CartApiImp()
+  CartApiImp(StartupHelper helper)
     : dio = Dio(
         BaseOptions(
           baseUrl: ApiConstants.baseUrl,
           headers: {
-            "Authorization": "Bearer ${AppKeys.staticToken}",
+            "Authorization": "Bearer ${helper.token}",
             "Content-Type": "application/json",
           },
         ),
@@ -67,14 +67,15 @@ class CartApiImp implements CartApiInterface {
   }
 
   @override
-  Future<ResultApi<List<CartEntity>>> getCart() async {
+  Future<ResultApi<List<CartDto>>> getCart() async {
     try {
       final response = await dio.get(ApiConstants.getCart);
       if (response.statusCode! >= 200 && response.statusCode! <= 300) {
-        final data = response.data;
-        final /*List<CartDto>*/ dataList = data['list'];
-
-        return Success([]);
+        final json = response.data['list'];
+        final List<CartDto> data = json
+            .map<CartDto>((e) => CartDto.fromJson(e))
+            .toList();
+        return Success(data);
       } else {
         return Error('Error: ${response.statusCode}');
       }
