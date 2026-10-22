@@ -18,6 +18,20 @@ import 'package:nti_shopping_app/core/storage_helper/app_secure_storage.dart'
     as _i835;
 import 'package:nti_shopping_app/core/storage_helper/startup_helper.dart'
     as _i383;
+import 'package:nti_shopping_app/feature/favourite/data/repo/data_source/favourite_data_source_imp.dart'
+    as _i522;
+import 'package:nti_shopping_app/feature/favourite/data/repo/repo/favourite_repo_imp.dart'
+    as _i598;
+import 'package:nti_shopping_app/feature/favourite/domain/repo/favourite_data_source_interface.dart'
+    as _i331;
+import 'package:nti_shopping_app/feature/favourite/domain/repo/favourite_repo_interface.dart'
+    as _i481;
+import 'package:nti_shopping_app/feature/favourite/domain/use_case/get_favourite_use_case.dart'
+    as _i741;
+import 'package:nti_shopping_app/feature/favourite/domain/use_case/remove_favourite_use_case.dart'
+    as _i887;
+import 'package:nti_shopping_app/feature/favourite/presentation/view_model/cubit/favourite_cubit.dart'
+    as _i122;
 import 'package:nti_shopping_app/feature/home/data/api/home_api_imp.dart'
     as _i1038;
 import 'package:nti_shopping_app/feature/home/data/api/home_api_interface.dart'
@@ -62,6 +76,9 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final registerModules = _$RegisterModules();
     gh.factory<_i558.FlutterSecureStorage>(() => registerModules.storage);
+    gh.factory<_i331.FavouriteDataSourceInterface>(
+      () => _i522.FavouriteDataSourceImp(),
+    );
     gh.factory<_i558.ProductsByCategoryApiInterface>(
       () => _i60.ProductsByCategoryApiImp(),
     );
@@ -73,6 +90,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i835.AppSecureStorage>(
       () => _i835.AppSecureStorage(gh<_i558.FlutterSecureStorage>()),
     );
+    gh.factory<_i481.FavouriteRepoInterface>(
+      () => _i598.FavouriteRepoImp(
+        dataSource: gh<_i331.FavouriteDataSourceInterface>(),
+      ),
+    );
+    gh.factory<_i887.RemoveFavouriteUseCase>(
+      () => _i887.RemoveFavouriteUseCase(gh<_i481.FavouriteRepoInterface>()),
+    );
     gh.lazySingleton<_i383.StartupHelper>(
       () => _i383.StartupHelper(gh<_i835.AppSecureStorage>()),
     );
@@ -81,12 +106,23 @@ extension GetItInjectableX on _i174.GetIt {
         dataSource: gh<_i949.ProductsByCategoryDataSourceInterface>(),
       ),
     );
+    gh.factory<_i741.GetFavouriteUseCase>(
+      () => _i741.GetFavouriteUseCase(
+        favouriteRepo: gh<_i481.FavouriteRepoInterface>(),
+      ),
+    );
     gh.factory<_i305.HomeApiInterface>(
       () => _i1038.HomeApiImp(gh<_i383.StartupHelper>()),
     );
     gh.factory<_i394.ProductsByCategoryGetUsecase>(
       () => _i394.ProductsByCategoryGetUsecase(
         categoryProductsRepo: gh<_i994.ProductsByCategoryRepoInterface>(),
+      ),
+    );
+    gh.factory<_i122.FavouriteCubit>(
+      () => _i122.FavouriteCubit(
+        gh<_i741.GetFavouriteUseCase>(),
+        gh<_i887.RemoveFavouriteUseCase>(),
       ),
     );
     gh.factory<_i1050.HomeDataSourceInterface>(

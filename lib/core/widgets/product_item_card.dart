@@ -65,12 +65,15 @@ class ProductItemCard extends StatelessWidget {
                 ),
 
                 Positioned(
-                  right: 4,
+                  top: 10,
+                  right: 10,
                   child:
                       favoriteOnTap ??
                       IconButton(
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(),
                         onPressed: () {},
-                        icon: Icon(Icons.favorite_border_rounded),
+                        icon: const Icon(Icons.favorite_border_rounded),
                       ),
                 ),
               ],
