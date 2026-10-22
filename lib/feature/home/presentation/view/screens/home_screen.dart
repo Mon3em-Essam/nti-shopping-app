@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti_shopping_app/core/di/service_locator.dart';
+import 'package:nti_shopping_app/core/routes/app_routes.dart';
 import 'package:nti_shopping_app/core/widgets/product_item_card.dart';
 import 'package:nti_shopping_app/feature/home/presentation/view/widget/category_item.dart';
 import 'package:nti_shopping_app/feature/home/presentation/view/widget/home_header.dart';
@@ -41,7 +42,6 @@ class _HomeScreenBody extends StatelessWidget {
                   const HomeHeader(),
                   const SizedBox(height: 15),
 
-                  // سكشن التصنيفات مع الـ Skeletonizer
                   Skeletonizer(
                     enabled: isCategoriesLoading,
                     effect: const ShimmerEffect(
@@ -53,7 +53,6 @@ class _HomeScreenBody extends StatelessWidget {
 
                   const SizedBox(height: 15),
 
-                  // سكشن المنتجات مع الـ Skeletonizer
                   Expanded(
                     child: _buildProductsSection(
                       context,
@@ -77,19 +76,16 @@ class _HomeScreenBody extends StatelessWidget {
     HomeCubit cubit,
     bool isProductsLoading,
   ) {
-    // في حالة وجود خطأ من السيرفر
     if (state is HProductsError && cubit.products.isEmpty) {
       return Center(
         child: Text(state.error, style: const TextStyle(color: Colors.red)),
       );
     }
 
-    // في حالة انتهاء التحميل ولم تعد هناك منتجات
     if (!isProductsLoading && cubit.products.isEmpty) {
       return const Center(child: Text("No products found"));
     }
 
-    // عرض الـ Grid سواء كانت شيمر (أثناء التحميل) أو المنتجات الحقيقية
     return Skeletonizer(
       enabled: isProductsLoading,
       effect: const ShimmerEffect(
@@ -100,9 +96,9 @@ class _HomeScreenBody extends StatelessWidget {
         itemCount: isProductsLoading ? 6 : cubit.products.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          crossAxisSpacing: 12,
-          mainAxisSpacing: 12,
-          childAspectRatio: 0.50, // تم ضبطها لمنع خطأ الـ Overflow
+          childAspectRatio: 0.54,
+          crossAxisSpacing: 16,
+          mainAxisSpacing: 24,
         ),
         itemBuilder: (context, index) {
           if (isProductsLoading) {
@@ -119,7 +115,7 @@ class _HomeScreenBody extends StatelessWidget {
           final product = cubit.products[index];
           return ProductItemCard(
             onTap: () {
-              
+              Navigator.pushNamed(context, AppRoutes.details,arguments: product.toDetailsEntity());
             },
             title: product.title,
             discount: product.discountPercentage,

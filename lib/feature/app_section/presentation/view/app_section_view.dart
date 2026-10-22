@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nti_shopping_app/core/di/service_locator.dart';
 import 'package:nti_shopping_app/feature/account/presentation/view/screens/account_screen.dart';
+import 'package:nti_shopping_app/feature/account/presentation/view_model/account_cubit.dart';
 import 'package:nti_shopping_app/feature/cart/presentation/view/screens/cart_screen.dart';
 import 'package:nti_shopping_app/feature/favourite/presentation/view/screens/favourite_screen.dart';
 import 'package:nti_shopping_app/feature/home/presentation/view/screens/home_screen.dart';
@@ -10,13 +12,16 @@ import '../view_model/app_section_state.dart';
 import 'widget/bottom_nav_bar_widget.dart';
 
 class AppSectionView extends StatelessWidget {
-  const AppSectionView({super.key});
+  AppSectionView({super.key});
 
-  final List<Widget> screens = const [
+  final List<Widget> screens = [
     HomeScreen(),
     CartScreen(),
     FavouriteScreen(),
-    AccountScreen(),
+    BlocProvider(
+      create: (_) => serviceLocator<AccountCubit>()..getAccount(),
+      child: const AccountScreen(),
+    ),
   ];
 
   @override

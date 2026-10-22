@@ -10,12 +10,15 @@ class AppColors {
   static const Color offWhite = Color(0xFFF7F8FA);
   static const Color lightGrey = Color(0xFFECEEF2);
   static const Color backgroundColor = Color(0xFFEBEBEB);
+  static const Color buttenColor = Color(0xFF212121);
+  static const Color decorationColor = Color(0xFFFCFCFC);
   static const Color charcoal = Color(0xFF1A1A2E);
   static const Color errorBorderColor = Color(0xFFEF4444);
   static const Color defaultBorderColor = Color(0xFF636363);
   static const Color disabledBorderColor = Color(0xFFECEEF2);
   static const Color defaultHintTextColor = Color(0xFF636363);
-
+  
+  static  Color decoration2Color = Colors.grey.shade300;
   static Color inStockColor = const Color(0xFF02C15E).withValues(alpha: 0.12);
   static Color outOfStockColor = const Color(
     0xFFDC2626,
@@ -25,5 +28,5 @@ class AppColors {
     0xFF3D1A6E,
   ).withValues(alpha: 0.12);
   static Color blackButtonColor = const Color(0xFF212121);
-  static const Color cardBackground = Color(0xFFFCFCFC);
+  static const Color cardBackground = Color(0xFFFAFAFA);
 }
