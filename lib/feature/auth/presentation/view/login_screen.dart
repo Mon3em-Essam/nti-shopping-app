@@ -6,7 +6,7 @@ import 'package:nti_shopping_app/core/routes/app_routes.dart';
 import 'package:nti_shopping_app/core/theme/app_colors.dart';
 import 'package:nti_shopping_app/core/widgets/custom_button.dart';
 import 'package:nti_shopping_app/core/widgets/custom_text_form_feild.dart';
-import 'package:nti_shopping_app/feature/auth/presentation/view_model/login_cubit.dart';
+import 'package:nti_shopping_app/feature/auth/presentation/view_model/login_state/login_cubit.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});

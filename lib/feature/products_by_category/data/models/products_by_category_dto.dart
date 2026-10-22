@@ -1,5 +1,4 @@
 import 'package:nti_shopping_app/core/constants/app_constants.dart';
-import 'package:nti_shopping_app/feature/product_details/domain/entities/product_entity.dart';
 import 'package:nti_shopping_app/feature/products_by_category/domain/entities/products_by_category_entity.dart';
 
 class ProductsByCategoryListDto {

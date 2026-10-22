@@ -46,8 +46,12 @@ import 'package:nti_shopping_app/feature/auth/domain/repo/auth_repo_interface.da
     as _i201;
 import 'package:nti_shopping_app/feature/auth/domain/use_case/login_use_case.dart'
     as _i126;
-import 'package:nti_shopping_app/feature/auth/presentation/view_model/login_cubit.dart'
-    as _i155;
+import 'package:nti_shopping_app/feature/auth/domain/use_case/register_use_case.dart'
+    as _i1024;
+import 'package:nti_shopping_app/feature/auth/presentation/view_model/login_state/login_cubit.dart'
+    as _i43;
+import 'package:nti_shopping_app/feature/auth/presentation/view_model/register_state/register_cubit.dart'
+    as _i376;
 import 'package:nti_shopping_app/feature/cart/data/api/cart_api_imp.dart'
     as _i339;
 import 'package:nti_shopping_app/feature/cart/data/api/cart_api_interface.dart'
@@ -196,9 +200,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i126.LoginUseCase>(
       () => _i126.LoginUseCase(gh<_i201.AuthRepoInterface>()),
     );
-    gh.factory<_i155.LoginCubit>(
+    gh.factory<_i1024.RegisterUseCase>(
+      () => _i1024.RegisterUseCase(gh<_i201.AuthRepoInterface>()),
+    );
+    gh.factory<_i43.LoginCubit>(
       () =>
-          _i155.LoginCubit(gh<_i126.LoginUseCase>(), gh<_i383.StartupHelper>()),
+          _i43.LoginCubit(gh<_i126.LoginUseCase>(), gh<_i383.StartupHelper>()),
     );
     gh.factory<_i402.CartAddCubit>(
       () => _i402.CartAddCubit(gh<_i454.CartAddUseCase>()),
@@ -219,6 +226,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i522.SearchDataSourceInterface>(
       () => _i450.SearchDataSourceImp(gh<_i483.SearchApiInterface>()),
+    );
+    gh.factory<_i376.RegisterCubit>(
+      () => _i376.RegisterCubit(gh<_i1024.RegisterUseCase>()),
     );
     gh.factory<_i873.ProductsByCategoryCubit>(
       () => _i873.ProductsByCategoryCubit(
