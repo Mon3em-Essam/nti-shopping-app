@@ -38,8 +38,7 @@ class ProductItemCard extends StatelessWidget {
           border: Border.all(color: AppColors.orangeLight, width: 2),
         ),
         child: Column(
-          mainAxisSize:
-              MainAxisSize.min,
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Stack(
@@ -52,7 +51,7 @@ class ProductItemCard extends StatelessWidget {
                       topRight: Radius.circular(16),
                     ),
                     child: AspectRatio(
-                      aspectRatio: 1.1, 
+                      aspectRatio: 1.1,
                       child: CachedNetworkImage(
                         imageUrl: image,
                         fit: BoxFit.cover,
@@ -73,6 +72,8 @@ class ProductItemCard extends StatelessWidget {
                   child:
                       favoriteOnTap ??
                       IconButton(
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(),
                         onPressed: () {},
                         icon: const Icon(Icons.favorite_border_rounded),
                       ),
