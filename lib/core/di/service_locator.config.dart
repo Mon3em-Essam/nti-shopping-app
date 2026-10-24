@@ -233,7 +233,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i741.GetFavouriteUseCase(
         favouriteRepo: gh<_i481.FavouriteRepoInterface>(),
       ),
-    );
+    ) ;
     gh.factory<_i376.RegisterCubit>(
       () => _i376.RegisterCubit(gh<_i1024.RegisterUseCase>()),
     );
